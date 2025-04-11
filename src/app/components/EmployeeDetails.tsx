@@ -7,11 +7,16 @@ import {
   Chip,
   Avatar,
   Divider,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 
 export default function EmployeeDetails() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
       <Card
@@ -21,7 +26,7 @@ export default function EmployeeDetails() {
           boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
         }}
       >
-        <CardContent sx={{ p: 3, pb: 2 }}>
+        <CardContent sx={{ p: { xs: 2, sm: 3 }, pb: { xs: 1.5, sm: 2 } }}>
           <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
             <Chip
               label="Active until: Jan 31, 2024"
@@ -37,7 +42,11 @@ export default function EmployeeDetails() {
             />
           </Box>
 
-          <Typography variant="h6" fontWeight="600" sx={{ mb: 1 }}>
+          <Typography
+            variant="h6"
+            fontWeight="600"
+            sx={{ mb: 1, fontSize: { xs: "1.1rem", sm: "1.25rem" } }}
+          >
             Junior Frontend Developer
           </Typography>
 
@@ -46,7 +55,14 @@ export default function EmployeeDetails() {
             specialization in creating user interfaces for websites.
           </Typography>
 
-          <Box display="flex" gap={1} sx={{ mb: 2 }}>
+          <Box
+            display="flex"
+            gap={1}
+            sx={{
+              mb: 2,
+              flexWrap: "wrap",
+            }}
+          >
             <Chip
               icon={
                 <Box
@@ -102,7 +118,7 @@ export default function EmployeeDetails() {
           boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
         }}
       >
-        <CardContent sx={{ p: 2 }}>
+        <CardContent sx={{ p: { xs: 1.5, sm: 2 } }}>
           <Box sx={{ display: "flex", alignItems: "center", mb: 1.5 }}>
             <Avatar
               src="/avatars/cody.jpg"
@@ -117,6 +133,12 @@ export default function EmployeeDetails() {
                 variant="caption"
                 color="text.secondary"
                 display="block"
+                sx={{
+                  maxWidth: { xs: "180px", sm: "none" },
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
               >
                 cody_fisher93@gmail.com
               </Typography>
@@ -125,7 +147,12 @@ export default function EmployeeDetails() {
 
           <Divider sx={{ my: 1.5 }} />
 
-          <Box display="flex" alignItems="center" gap={2}>
+          <Box
+            display="flex"
+            flexDirection={isMobile ? "column" : "row"}
+            alignItems={isMobile ? "flex-start" : "center"}
+            gap={isMobile ? 1 : 2}
+          >
             <Box display="flex" alignItems="center">
               <PhoneOutlinedIcon
                 sx={{

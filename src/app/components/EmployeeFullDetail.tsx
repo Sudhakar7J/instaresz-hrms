@@ -7,6 +7,8 @@ import {
   Box,
   Avatar,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -21,6 +23,9 @@ interface EmployeeFullDetailProps {
 export default function EmployeeFullDetail({
   employee,
 }: EmployeeFullDetailProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Card
       sx={{
@@ -30,7 +35,7 @@ export default function EmployeeFullDetail({
         height: "100%",
       }}
     >
-      <CardContent sx={{ p: 3 }}>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
         {/* Header section with employee details */}
         <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -79,7 +84,13 @@ export default function EmployeeFullDetail({
         </Box>
 
         {/* Contact information with icons */}
-        <Box display="flex" alignItems="center" gap={2} mb={3}>
+        <Box
+          display="flex"
+          flexDirection={isMobile ? "column" : "row"}
+          alignItems={isMobile ? "flex-start" : "center"}
+          gap={isMobile ? 1 : 2}
+          mb={3}
+        >
           <Box display="flex" alignItems="center">
             <PhoneOutlinedIcon
               sx={{
@@ -110,9 +121,17 @@ export default function EmployeeFullDetail({
         {/* Department and Job Title Section */}
         <Box sx={{ mb: 1.5 }}>
           <Box
-            sx={{ display: "flex", justifyContent: "space-between", mb: 0.5 }}
+            sx={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              justifyContent: "space-between",
+              mb: 0.5,
+            }}
           >
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            <Typography
+              variant="caption"
+              sx={{ color: "text.secondary", mb: isMobile ? 0.5 : 0 }}
+            >
               Department:
             </Typography>
             <Typography
@@ -124,9 +143,20 @@ export default function EmployeeFullDetail({
           </Box>
 
           <Box
-            sx={{ display: "flex", justifyContent: "space-between", mb: 1.5 }}
+            sx={{
+              display: "flex",
+              flexDirection: isMobile ? "column" : "row",
+              justifyContent: "space-between",
+              mb: 1.5,
+            }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: isMobile ? 1 : 0,
+              }}
+            >
               <Box
                 sx={{
                   display: "inline-flex",

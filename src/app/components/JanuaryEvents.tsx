@@ -8,6 +8,8 @@ import {
   List,
   Avatar,
   Divider,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Event } from "../data/mockData";
 import { useState } from "react";
@@ -24,6 +26,8 @@ export default function JanuaryEvents({
   birthdayEvents,
 }: JanuaryEventsProps) {
   const [activeTab, setActiveTab] = useState<TabType>("timeOff");
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const displayEvents = activeTab === "timeOff" ? events : birthdayEvents;
 
@@ -38,8 +42,8 @@ export default function JanuaryEvents({
     >
       <Box
         sx={{
-          p: 2,
-          pb: 1.5,
+          p: { xs: 1.5, sm: 2 },
+          pb: { xs: 1, sm: 1.5 },
         }}
       >
         <Typography variant="subtitle1" fontWeight="500">
@@ -47,7 +51,7 @@ export default function JanuaryEvents({
         </Typography>
       </Box>
 
-      <Box sx={{ px: 2, mb: 1 }}>
+      <Box sx={{ px: { xs: 1.5, sm: 2 }, mb: 1 }}>
         <Box
           sx={{
             display: "flex",
@@ -80,6 +84,7 @@ export default function JanuaryEvents({
                 color:
                   activeTab === "timeOff" ? "primary.main" : "text.secondary",
                 fontWeight: 500,
+                fontSize: { xs: "0.65rem", sm: "0.75rem" },
               }}
             >
               Time Off
@@ -106,6 +111,7 @@ export default function JanuaryEvents({
                 color:
                   activeTab === "birthday" ? "primary.main" : "text.secondary",
                 fontWeight: 500,
+                fontSize: { xs: "0.65rem", sm: "0.75rem" },
               }}
             >
               Birthday
@@ -117,18 +123,41 @@ export default function JanuaryEvents({
       <CardContent sx={{ p: 0, "&:last-child": { pb: 1 } }}>
         <List sx={{ width: "100%", p: 0 }}>
           {displayEvents.map((event, index) => (
-            <Box key={event.id} sx={{ px: 2, py: 1 }}>
+            <Box key={event.id} sx={{ px: { xs: 1.5, sm: 2 }, py: 1 }}>
               <Box sx={{ display: "flex", width: "100%" }}>
                 <Avatar
                   src={`/avatars/avatar${index + 1}.jpg`}
                   alt={event.title}
                   sx={{ width: 36, height: 36, mr: 1.5 }}
                 />
-                <Box>
-                  <Typography variant="body2" fontWeight="500">
+                <Box
+                  sx={{
+                    width: "calc(100% - 36px - 1.5rem)",
+                    overflow: "hidden",
+                  }}
+                >
+                  <Typography
+                    variant="body2"
+                    fontWeight="500"
+                    sx={{
+                      width: "100%",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
                     {event.title}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary">
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{
+                      display: "block",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
                     {event.time}
                   </Typography>
 

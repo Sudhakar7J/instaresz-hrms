@@ -8,6 +8,8 @@ import {
   Avatar,
   Button,
   Chip,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import {
@@ -24,6 +26,9 @@ export default function LeaveApplication({
   leaveApplication,
   employee,
 }: LeaveApplicationProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Card
       sx={{
@@ -33,9 +38,18 @@ export default function LeaveApplication({
         height: "100%",
       }}
     >
-      <CardContent sx={{ p: 3 }}>
+      <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
         {/* Header with Leave Type and Status */}
-        <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2.5 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "space-between",
+            alignItems: isMobile ? "flex-start" : "center",
+            mb: 2.5,
+            gap: isMobile ? 1 : 0,
+          }}
+        >
           <Chip
             label={leaveApplication.leaveType}
             size="small"
@@ -105,7 +119,14 @@ export default function LeaveApplication({
         </Box>
 
         {/* Action Buttons */}
-        <Box sx={{ display: "flex", gap: 1, mb: 2.5 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            gap: 1,
+            mb: 2.5,
+          }}
+        >
           <Button
             variant="outlined"
             fullWidth
@@ -114,6 +135,7 @@ export default function LeaveApplication({
               borderRadius: "4px",
               borderColor: "#00796b",
               color: "#00796b",
+              py: isMobile ? 0.7 : "inherit",
               "&:hover": {
                 borderColor: "#00695c",
                 backgroundColor: "rgba(0, 121, 107, 0.04)",
@@ -130,6 +152,7 @@ export default function LeaveApplication({
               borderRadius: "4px",
               borderColor: "#d32f2f",
               color: "#d32f2f",
+              py: isMobile ? 0.7 : "inherit",
               "&:hover": {
                 borderColor: "#c62828",
                 backgroundColor: "rgba(211, 47, 47, 0.04)",
@@ -141,7 +164,14 @@ export default function LeaveApplication({
         </Box>
 
         {/* Date Range */}
-        <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: isMobile ? "column" : "row",
+            justifyContent: "space-between",
+            gap: isMobile ? 1.5 : 0,
+          }}
+        >
           <Box>
             <Typography
               variant="caption"
@@ -154,20 +184,15 @@ export default function LeaveApplication({
               {leaveApplication.fromDate}
             </Typography>
           </Box>
-          <Box>
+          <Box sx={{ textAlign: isMobile ? "left" : "right" }}>
             <Typography
               variant="caption"
               color="text.secondary"
               display="block"
-              sx={{ textAlign: "right" }}
             >
               Leave To:
             </Typography>
-            <Typography
-              variant="body2"
-              fontWeight="500"
-              sx={{ textAlign: "right" }}
-            >
+            <Typography variant="body2" fontWeight="500">
               {leaveApplication.toDate}
             </Typography>
           </Box>

@@ -10,6 +10,8 @@ import {
   Button,
   Tooltip,
   Zoom,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
@@ -23,6 +25,8 @@ interface PaymentMethodProps {
 export default function PaymentMethod({ data }: PaymentMethodProps) {
   const [revealedAccount, setRevealedAccount] = useState(false);
   const fullAccountNumber = "4556 7891 2356 6273";
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const toggleReveal = () => {
     setRevealedAccount(!revealedAccount);
@@ -40,10 +44,12 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "flex-start" : "center",
           justifyContent: "space-between",
-          p: 2,
-          pb: 1.5,
+          p: { xs: 1.5, sm: 2 },
+          pb: { xs: 1, sm: 1.5 },
+          gap: isMobile ? 1 : 0,
         }}
       >
         <Box display="flex" alignItems="center">
@@ -76,6 +82,7 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
             height: "28px",
             borderColor: "#e0e0e0",
             color: "#757575",
+            width: isMobile ? "100%" : "auto",
           }}
         >
           Change Payment Method
@@ -84,7 +91,7 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
 
       <CardContent sx={{ pt: 0, pb: "16px !important" }}>
         <Grid container spacing={2}>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               color="text.secondary"
@@ -97,7 +104,7 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
             </Typography>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={6} md={3}>
             <Typography
               variant="body2"
               color="text.secondary"
@@ -124,7 +131,7 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
             </Box>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Typography
               variant="body2"
               color="text.secondary"
@@ -137,7 +144,7 @@ export default function PaymentMethod({ data }: PaymentMethodProps) {
             </Typography>
           </Grid>
 
-          <Grid item xs={3}>
+          <Grid item xs={6} sm={6} md={3}>
             <Typography
               variant="body2"
               color="text.secondary"

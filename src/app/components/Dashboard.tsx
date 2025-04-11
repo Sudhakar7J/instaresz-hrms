@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Paper, Divider, Typography, Avatar } from "@mui/material";
+import { Box, Paper, Divider, Typography, Avatar, Grid } from "@mui/material";
 import PaymentMethod from "./PaymentMethod";
 import JanuaryEvents from "./JanuaryEvents";
 import TodaySchedule from "./TodaySchedule";
@@ -39,6 +39,7 @@ export default function Dashboard() {
     <Box
       sx={{
         display: "flex",
+        flexDirection: { xs: "column", md: "row" },
         bgcolor: "#f5f7fa",
         minHeight: "100vh",
         p: { xs: 1, sm: 2 },
@@ -47,10 +48,11 @@ export default function Dashboard() {
       {/* Left sidebar - placeholder for now */}
       <Paper
         sx={{
-          width: 240,
+          width: { md: 240 },
           borderRadius: 2,
           display: { xs: "none", md: "block" },
-          mr: 2,
+          mr: { md: 2 },
+          mb: { xs: 2, md: 0 },
           boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
         }}
       >
@@ -58,170 +60,159 @@ export default function Dashboard() {
       </Paper>
 
       {/* Main content */}
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1, width: "100%" }}>
         {/* Payment Method Card at the top */}
-        <Box sx={{ width: "80%", mb: 3 }}>
+        <Box sx={{ width: "100%", maxWidth: { xs: "100%", md: "80%" }, mb: 3 }}>
           <PaymentMethod data={paymentData} />
         </Box>
 
-        {/* Three-column layout for content below Payment Method */}
-        <Box sx={{ display: "flex", flexWrap: "wrap", mx: -1 }}>
-          {/* January Events card - 30% width */}
-          <Box sx={{ width: "30%", px: 1, mb: 2 }}>
+        {/* Grid layout for content below Payment Method */}
+        <Grid container spacing={2}>
+          {/* January Events card */}
+          <Grid item xs={12} sm={6} md={4}>
             <JanuaryEvents
               events={januaryEvents}
               birthdayEvents={birthdayEvents}
             />
-          </Box>
+          </Grid>
 
-          {/* Middle column - Today Schedule */}
-          <Box sx={{ width: "35%", px: 1, mb: 2 }}>
+          {/* Today Schedule */}
+          <Grid item xs={12} sm={6} md={4}>
             <TodaySchedule events={todaySchedule} date="Jan 28, 2024" />
-          </Box>
+          </Grid>
 
-          {/* Right column - Developer card */}
-          <Box sx={{ width: "35%", px: 1, mb: 2 }}>
+          {/* Developer card */}
+          <Grid item xs={12} md={4}>
             <EmployeeDetails />
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
 
-        {/* Two-column layout for bottom content */}
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            mx: -1,
-            height: "350px",
-            mb: 2,
-          }}
-        >
-          <Box sx={{ width: "40%", px: 1, height: "100%" }}>
-            <EmployeeTable employees={employeeData} />
-          </Box>
-          <Box sx={{ width: "60%", px: 1, height: "100%" }}>
-            <MemberWorkHours data={workHoursData} />
-          </Box>
-        </Box>
+        {/* Grid layout for bottom content */}
+        <Grid container spacing={2} sx={{ mt: 0.5, mb: 2 }}>
+          <Grid item xs={12} md={5}>
+            <Box sx={{ height: { md: "350px" } }}>
+              <EmployeeTable employees={employeeData} />
+            </Box>
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Box sx={{ height: { md: "350px" } }}>
+              <MemberWorkHours data={workHoursData} />
+            </Box>
+          </Grid>
+        </Grid>
 
-        {/* Layout for Employee Detail, Leave Application, and new cards */}
-        <Box sx={{ display: "flex", flexWrap: "wrap", mx: -1 }}>
-          {/* First column - Employee Full Detail */}
-          <Box sx={{ width: "25%", px: 1, mb: 2 }}>
+        {/* Grid layout for Employee Detail, Leave Application, and new cards */}
+        <Grid container spacing={2}>
+          {/* Employee Full Detail */}
+          <Grid item xs={12} sm={6} lg={3}>
             <EmployeeFullDetail employee={employeeDetails[0]} />
-          </Box>
+          </Grid>
 
-          {/* Second column - Leave Application */}
-          <Box sx={{ width: "25%", px: 1, mb: 2 }}>
+          {/* Leave Application */}
+          <Grid item xs={12} sm={6} lg={3}>
             {leaveEmployee && (
               <LeaveApplication
                 leaveApplication={leaveApplications[0]}
                 employee={leaveEmployee}
               />
             )}
-          </Box>
+          </Grid>
 
-          {/* Third column - Two vertical cards */}
-          <Box
-            sx={{
-              width: "25%",
-              px: 1,
-              mb: 2,
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-            }}
-          >
-            {/* First card - Employee with LinkedIn */}
-            <Paper
-              sx={{
-                borderRadius: "12px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-                overflow: "hidden",
-              }}
-            >
-              <Box sx={{ p: 2 }}>
-                <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+          {/* Two vertical cards */}
+          <Grid item xs={12} sm={6} lg={3}>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+              {/* First card - Employee with LinkedIn */}
+              <Paper
+                sx={{
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                  overflow: "hidden",
+                }}
+              >
+                <Box sx={{ p: 2 }}>
+                  <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+                    <Avatar
+                      src={lisaEmployee?.avatar}
+                      alt={lisaEmployee?.name}
+                      sx={{ width: 36, height: 36, mr: 2 }}
+                    />
+                    <Box>
+                      <Typography variant="subtitle2" fontWeight="500">
+                        {lisaEmployee?.name}
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        helo-lisaa@hotmail.com
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+
+                <Divider />
+
+                <Box
+                  sx={{
+                    p: 2,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Box sx={{ display: "flex", alignItems: "center" }}>
+                    <LinkedInIcon
+                      sx={{ fontSize: 18, color: "#0077B5", mr: 0.5 }}
+                    />
+                    <Typography variant="caption">LinkedIn</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <InsertDriveFileOutlinedIcon
+                        sx={{ fontSize: 16, color: "text.secondary", mr: 0.5 }}
+                      />
+                      <Typography variant="caption" color="text.secondary">
+                        4
+                      </Typography>
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center" }}>
+                      <ChatBubbleOutlineOutlinedIcon
+                        sx={{ fontSize: 16, color: "text.secondary", mr: 0.5 }}
+                      />
+                      <Typography variant="caption" color="text.secondary">
+                        1
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+              </Paper>
+
+              {/* Second card - Employee with job title */}
+              <Paper
+                sx={{
+                  borderRadius: "12px",
+                  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                  p: 2,
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "center" }}>
                   <Avatar
-                    src={lisaEmployee?.avatar}
-                    alt={lisaEmployee?.name}
+                    src={brooklynEmployee?.avatar}
+                    alt={brooklynEmployee?.name}
                     sx={{ width: 36, height: 36, mr: 2 }}
                   />
                   <Box>
                     <Typography variant="subtitle2" fontWeight="500">
-                      {lisaEmployee?.name}
+                      {brooklynEmployee?.name}
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      helo-lisaa@hotmail.com
+                      {brooklynEmployee?.jobTitle}
                     </Typography>
                   </Box>
                 </Box>
-              </Box>
+              </Paper>
+            </Box>
+          </Grid>
 
-              <Divider />
-
-              <Box
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <LinkedInIcon
-                    sx={{ fontSize: 18, color: "#0077B5", mr: 0.5 }}
-                  />
-                  <Typography variant="caption">LinkedIn</Typography>
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <InsertDriveFileOutlinedIcon
-                      sx={{ fontSize: 16, color: "text.secondary", mr: 0.5 }}
-                    />
-                    <Typography variant="caption" color="text.secondary">
-                      4
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: "flex", alignItems: "center" }}>
-                    <ChatBubbleOutlineOutlinedIcon
-                      sx={{ fontSize: 16, color: "text.secondary", mr: 0.5 }}
-                    />
-                    <Typography variant="caption" color="text.secondary">
-                      1
-                    </Typography>
-                  </Box>
-                </Box>
-              </Box>
-            </Paper>
-
-            {/* Second card - Employee with job title */}
-            <Paper
-              sx={{
-                borderRadius: "12px",
-                boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-                p: 2,
-              }}
-            >
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Avatar
-                  src={brooklynEmployee?.avatar}
-                  alt={brooklynEmployee?.name}
-                  sx={{ width: 36, height: 36, mr: 2 }}
-                />
-                <Box>
-                  <Typography variant="subtitle2" fontWeight="500">
-                    {brooklynEmployee?.name}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary">
-                    {brooklynEmployee?.jobTitle}
-                  </Typography>
-                </Box>
-              </Box>
-            </Paper>
-          </Box>
-
-          {/* Fourth column - Another Leave Application */}
-          <Box sx={{ width: "25%", px: 1, mb: 2 }}>
+          {/* Another Leave Application */}
+          <Grid item xs={12} sm={6} lg={3}>
             {leslieEmployee && (
               <Box
                 component={Paper}
@@ -317,8 +308,8 @@ export default function Dashboard() {
                 </Box>
               </Box>
             )}
-          </Box>
-        </Box>
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );

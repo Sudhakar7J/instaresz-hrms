@@ -10,6 +10,8 @@ import {
   Select,
   MenuItem,
   SelectChangeEvent,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -28,6 +30,9 @@ interface TodayScheduleProps {
 
 export default function TodaySchedule({ date }: TodayScheduleProps) {
   const [selectedDate, setSelectedDate] = useState(date);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleDateChange = (event: SelectChangeEvent<string>) => {
     setSelectedDate(event.target.value);
@@ -71,16 +76,16 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
     // Determine height and vertical position based on event type
     let top = "20%";
     const height = "30px";
-    let width = "120px";
+    let width = isMobile ? "90px" : "120px";
 
     if (event.type === "meeting") {
       top = "55%";
     } else if (event.type === "test") {
       top = "75%";
-      width = "100px";
+      width = isMobile ? "80px" : "100px";
     } else if (event.type === "email") {
       top = "35%";
-      width = "180px";
+      width = isMobile ? "150px" : "180px";
     }
 
     // Colors based on type
@@ -106,6 +111,9 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
       zIndex: 2,
       display: "flex",
       alignItems: "center",
+      overflow: "hidden",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
     };
   };
 
@@ -151,17 +159,26 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: isMobile ? "column" : "row",
+          alignItems: isMobile ? "flex-start" : "center",
           justifyContent: "space-between",
-          p: 2,
-          pb: 1,
+          p: { xs: 1.5, sm: 2 },
+          pb: { xs: 1, sm: 1 },
+          gap: isMobile ? 1 : 0,
         }}
       >
         <Typography variant="subtitle1" fontWeight="500">
           Today Schedule
         </Typography>
 
-        <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            width: isMobile ? "100%" : "auto",
+            justifyContent: isMobile ? "space-between" : "flex-start",
+          }}
+        >
           <Select
             value={selectedDate}
             onChange={handleDateChange}
@@ -174,6 +191,7 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
               height: "28px",
               mr: 1,
               borderRadius: "4px",
+              width: isMobile ? "70%" : "auto",
               ".MuiOutlinedInput-notchedOutline": {
                 borderColor: "#e0e0e0",
                 borderRadius: "4px",
@@ -222,19 +240,27 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
               },
             }}
           >
-            Add Task
+            {isMobile ? "Add" : "Add Task"}
           </Button>
         </Box>
       </Box>
 
-      <CardContent sx={{ p: 0, pt: 0, "&:last-child": { pb: 0 } }}>
+      <CardContent
+        sx={{
+          p: 0,
+          pt: 0,
+          "&:last-child": { pb: 0 },
+          overflowX: isTablet ? "auto" : "visible",
+        }}
+      >
         <Box
           sx={{
             position: "relative",
-            height: 220,
-            p: 2,
+            height: { xs: 190, sm: 220 },
+            p: { xs: 1, sm: 2 },
             pt: 1,
             pb: 2,
+            minWidth: isMobile ? 400 : "auto",
           }}
         >
           {/* Time indicators at top */}
@@ -309,7 +335,12 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
               <Box key={event.id} sx={getEventStyle(event)}>
                 <Typography
                   variant="caption"
-                  sx={{ fontSize: "0.7rem", fontWeight: 500 }}
+                  sx={{
+                    fontSize: { xs: "0.65rem", sm: "0.7rem" },
+                    fontWeight: 500,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                  }}
                 >
                   {event.title}
                 </Typography>
