@@ -23,12 +23,25 @@ export interface Employee {
   designation?: string;
   status?: string;
   attendance?: string;
+  phone?: string;
+  workHours?: string;
+  contractType?: string;
 }
 
 export interface WorkHours {
   date: string;
   hours: number;
   overtime?: number;
+}
+
+export interface LeaveApplication {
+  id: string;
+  employeeId: string;
+  leaveType: string;
+  status: string;
+  days: number;
+  fromDate: string;
+  toDate: string;
 }
 
 // Payment method data
@@ -168,11 +181,14 @@ export const employeeDetails: Employee[] = [
   {
     id: "1",
     name: "Brooklyn Simmons",
-    email: "brooklyn@example.com",
+    email: "brook-simms@gmail.com",
     avatar: "/avatars/brooklyn.jpg",
     department: "Design",
     jobTitle: "Creative Director",
     attendance: "Pending",
+    phone: "(+62) 928 7273 7262",
+    workHours: "120h 32m",
+    contractType: "Onsite - Fulltime",
   },
   {
     id: "2",
@@ -279,5 +295,27 @@ export const jan30Schedule: Event[] = [
     time: "11:00",
     type: "meeting",
     color: "#f44336",
+  },
+];
+
+// Leave applications
+export const leaveApplications: LeaveApplication[] = [
+  {
+    id: "1",
+    employeeId: "2", // Ralph Edwards
+    leaveType: "Sick Leave",
+    status: "Pending",
+    days: 4,
+    fromDate: "Jan 23, 2024",
+    toDate: "Jan 27, 2024",
+  },
+  {
+    id: "2",
+    employeeId: "1", // Brooklyn Simmons
+    leaveType: "Annual Leave",
+    status: "Approved",
+    days: 7,
+    fromDate: "Feb 15, 2024",
+    toDate: "Feb 22, 2024",
   },
 ];
