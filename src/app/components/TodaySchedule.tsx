@@ -12,6 +12,7 @@ import {
   SelectChangeEvent,
   useMediaQuery,
   useTheme,
+  Tooltip,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -75,14 +76,14 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
 
     // Determine height and vertical position based on event type
     let top = "20%";
-    const height = "30px";
-    let width = isMobile ? "90px" : "120px";
+    const height = "32px";
+    let width = isMobile ? "90px" : "130px";
 
     if (event.type === "meeting") {
       top = "55%";
     } else if (event.type === "test") {
       top = "75%";
-      width = isMobile ? "80px" : "100px";
+      width = isMobile ? "80px" : "110px";
     } else if (event.type === "email") {
       top = "35%";
       width = isMobile ? "150px" : "180px";
@@ -104,16 +105,23 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
       height,
       width,
       transform: "translateX(-50%)",
-      padding: "6px 8px",
+      padding: "6px 10px",
       backgroundColor: bgColor,
-      borderLeft: `3px solid ${borderColor}`,
-      borderRadius: "4px",
+      borderLeft: `4px solid ${borderColor}`,
+      borderRadius: "6px",
+      boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
       zIndex: 2,
       display: "flex",
       alignItems: "center",
       overflow: "hidden",
       whiteSpace: "nowrap",
       textOverflow: "ellipsis",
+      transition: "transform 0.2s, box-shadow 0.2s",
+      "&:hover": {
+        transform: "translateX(-50%) scale(1.02)",
+        boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+        zIndex: 3,
+      },
     };
   };
 
@@ -130,20 +138,21 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
     top: 0,
     bottom: 0,
     width: "2px",
-    backgroundColor: "#3f51b5",
+    background: "linear-gradient(to bottom, #5c6bc0, #3f51b5)",
     zIndex: 1,
     transform: "translateX(-50%)",
   };
 
   const timeMarker = {
     position: "absolute" as const,
-    bottom: "-3px",
+    bottom: "-4px",
     left: "50%",
     transform: "translateX(-50%)",
-    width: "8px",
-    height: "8px",
+    width: "10px",
+    height: "10px",
     borderRadius: "50%",
     backgroundColor: "#3f51b5",
+    boxShadow: "0 0 0 2px rgba(63, 81, 181, 0.2)",
     zIndex: 2,
   };
 
@@ -152,8 +161,9 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
       sx={{
         mb: 2,
         borderRadius: "12px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+        boxShadow: "0 2px 10px rgba(0,0,0,0.07)",
         height: "100%",
+        overflow: "hidden",
       }}
     >
       <Box
@@ -165,9 +175,10 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
           p: { xs: 1.5, sm: 2 },
           pb: { xs: 1, sm: 1 },
           gap: isMobile ? 1 : 0,
+          borderBottom: "1px solid rgba(0,0,0,0.04)",
         }}
       >
-        <Typography variant="subtitle1" fontWeight="500">
+        <Typography variant="subtitle1" fontWeight="600" color="#424242">
           Today Schedule
         </Typography>
 
@@ -188,23 +199,25 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
             IconComponent={KeyboardArrowDownIcon}
             sx={{
               fontSize: "0.75rem",
-              height: "28px",
-              mr: 1,
-              borderRadius: "4px",
+              height: "30px",
+              mr: 1.5,
+              borderRadius: "6px",
               width: isMobile ? "70%" : "auto",
               ".MuiOutlinedInput-notchedOutline": {
                 borderColor: "#e0e0e0",
-                borderRadius: "4px",
+                borderRadius: "6px",
               },
               "&:hover .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#e0e0e0",
+                borderColor: "#bdbdbd",
               },
               ".MuiSvgIcon-root": {
                 fontSize: "1rem",
+                color: "#757575",
               },
               ".MuiSelect-select": {
                 py: 0.5,
                 pr: 2,
+                fontWeight: 500,
               },
             }}
             MenuProps={{
@@ -229,14 +242,15 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
               textTransform: "none",
               borderRadius: "8px",
               fontSize: "0.75rem",
-              height: "28px",
+              height: "30px",
               py: 0,
               borderColor: "#2196f3",
               color: "#2196f3",
-              fontWeight: "normal",
+              fontWeight: 500,
               "&:hover": {
                 borderColor: "#1976d2",
                 backgroundColor: "rgba(33, 150, 243, 0.04)",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.05)",
               },
             }}
           >
@@ -256,30 +270,39 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
         <Box
           sx={{
             position: "relative",
-            height: { xs: 190, sm: 220 },
-            p: { xs: 1, sm: 2 },
-            pt: 1,
+            height: { xs: 200, sm: 230 },
+            p: { xs: 1.5, sm: 2 },
+            pt: 1.5,
             pb: 2,
             minWidth: isMobile ? 400 : "auto",
+            background:
+              "linear-gradient(to bottom, rgba(250,250,255,0.5), rgba(255,255,255,0))",
           }}
         >
           {/* Time indicators at top */}
           <Box
             sx={{
               position: "absolute",
-              top: 0,
+              top: 5,
               left: "2%",
               right: "2%",
               display: "flex",
               justifyContent: "space-between",
-              paddingBottom: "5px",
+              paddingBottom: "8px",
             }}
           >
             {hours.map((hour) => (
               <Typography
                 key={hour}
                 variant="caption"
-                sx={{ fontSize: "0.65rem", color: "#9e9e9e" }}
+                sx={{
+                  fontSize: "0.7rem",
+                  color: "#757575",
+                  fontWeight: 500,
+                  backgroundColor: "rgba(245,245,255,0.6)",
+                  px: 0.5,
+                  borderRadius: 1,
+                }}
               >
                 {hour}
               </Typography>
@@ -290,9 +313,11 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
           <Box
             sx={{
               position: "relative",
-              height: "calc(100% - 20px)",
-              marginTop: "20px",
-              borderTop: "1px dashed #e0e0e0",
+              height: "calc(100% - 25px)",
+              marginTop: "25px",
+              borderTop: "1px dashed rgba(0,0,0,0.1)",
+              backgroundColor: "rgba(250,250,255,0.3)",
+              borderRadius: "8px",
             }}
           >
             {/* Vertical time dividers */}
@@ -304,7 +329,8 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
                   bottom: 0,
                   top: 0,
                   left: `${(index / (hours.length - 1)) * 100}%`,
-                  borderLeft: index === 0 ? "none" : "1px dashed #e0e0e0",
+                  borderLeft:
+                    index === 0 ? "none" : "1px dashed rgba(0,0,0,0.07)",
                   zIndex: 0,
                 }}
               />
@@ -318,33 +344,42 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
                 size="small"
                 sx={{
                   position: "absolute",
-                  top: "-20px",
+                  top: "-22px",
                   left: "50%",
                   transform: "translateX(-50%)",
-                  height: "20px",
+                  height: "22px",
                   borderRadius: "4px",
                   fontSize: "0.65rem",
-                  backgroundColor: "#3f51b5",
+                  fontWeight: 600,
+                  background: "linear-gradient(to right, #5c6bc0, #3f51b5)",
                   color: "white",
+                  boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
                 }}
               />
             </Box>
 
             {/* Events */}
             {dayEvents.map((event) => (
-              <Box key={event.id} sx={getEventStyle(event)}>
-                <Typography
-                  variant="caption"
-                  sx={{
-                    fontSize: { xs: "0.65rem", sm: "0.7rem" },
-                    fontWeight: 500,
-                    overflow: "hidden",
-                    textOverflow: "ellipsis",
-                  }}
-                >
-                  {event.title}
-                </Typography>
-              </Box>
+              <Tooltip
+                key={event.id}
+                title={`${event.title} (${event.time})`}
+                arrow
+                placement="top"
+              >
+                <Box sx={getEventStyle(event)}>
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      fontSize: { xs: "0.7rem", sm: "0.75rem" },
+                      fontWeight: 500,
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {event.title}
+                  </Typography>
+                </Box>
+              </Tooltip>
             ))}
           </Box>
         </Box>

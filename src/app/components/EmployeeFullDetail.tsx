@@ -58,27 +58,37 @@ export default function EmployeeFullDetail({
               size="small"
               sx={{
                 p: 0.5,
-                bgcolor: "white",
-                border: "1px solid #e0e0e0",
-                borderRadius: "4px",
-                width: 28,
-                height: 28,
+                bgcolor: theme.palette.background.default,
+                border: `1px solid ${theme.palette.divider}`,
+                borderRadius: "6px",
+                width: 30,
+                height: 30,
+                "&:hover": {
+                  bgcolor: theme.palette.action.hover,
+                },
               }}
             >
-              <KeyboardArrowUpIcon sx={{ fontSize: 18 }} />
+              <KeyboardArrowUpIcon
+                sx={{ fontSize: 20, color: theme.palette.text.secondary }}
+              />
             </IconButton>
             <IconButton
               size="small"
               sx={{
                 p: 0.5,
-                bgcolor: "white",
-                border: "1px solid #e0e0e0",
-                borderRadius: "4px",
-                width: 28,
-                height: 28,
+                bgcolor: theme.palette.background.default,
+                border: `1px solid ${theme.palette.divider}`,
+                borderRadius: "6px",
+                width: 30,
+                height: 30,
+                "&:hover": {
+                  bgcolor: theme.palette.action.hover,
+                },
               }}
             >
-              <MoreVertIcon sx={{ fontSize: 18 }} />
+              <MoreVertIcon
+                sx={{ fontSize: 20, color: theme.palette.text.secondary }}
+              />
             </IconButton>
           </Box>
         </Box>
@@ -118,26 +128,21 @@ export default function EmployeeFullDetail({
           </Box>
         </Box>
 
-        {/* Department and Job Title Section */}
-        <Box sx={{ mb: 1.5 }}>
+        {/* Department and Job Title Section - Now on the same line */}
+        <Box sx={{ mb: 2 }}>
           <Box
             sx={{
               display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              justifyContent: "space-between",
               mb: 0.5,
             }}
           >
             <Typography
               variant="caption"
-              sx={{ color: "text.secondary", mb: isMobile ? 0.5 : 0 }}
+              sx={{ color: "text.secondary", mr: 2 }}
             >
               Department:
             </Typography>
-            <Typography
-              variant="caption"
-              sx={{ color: "text.secondary", pr: 2 }}
-            >
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
               Job Title:
             </Typography>
           </Box>
@@ -145,16 +150,15 @@ export default function EmployeeFullDetail({
           <Box
             sx={{
               display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              justifyContent: "space-between",
-              mb: 1.5,
+              mb: 2,
             }}
           >
             <Box
               sx={{
                 display: "flex",
                 alignItems: "center",
-                mb: isMobile ? 1 : 0,
+                mr: 2,
+                flexGrow: 1,
               }}
             >
               <Box
@@ -165,11 +169,11 @@ export default function EmployeeFullDetail({
                   bgcolor: "#e0f7ea",
                   color: "#00796b",
                   py: 0.5,
-                  px: 1,
+                  px: 1.5,
                   borderRadius: "50px",
-                  fontSize: "0.7rem",
+                  fontSize: "0.75rem",
                   fontWeight: 500,
-                  height: "22px",
+                  height: "24px",
                 }}
               >
                 <Box
@@ -183,26 +187,41 @@ export default function EmployeeFullDetail({
                     display: "inline-block",
                   }}
                 />
-                Design
+                {employee.department || "Design"}
               </Box>
             </Box>
 
-            <Typography variant="caption" sx={{ fontWeight: 500, pr: 2 }}>
+            <Typography variant="body2" sx={{ fontWeight: 500, flexGrow: 1 }}>
               {employee.jobTitle}
             </Typography>
           </Box>
 
+          {/* Contract Type Section - Now label and answer stacked */}
           <Box sx={{ mb: 0.5 }}>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
               Contract Type:
             </Typography>
           </Box>
-
-          <Box>
-            <Typography variant="caption" sx={{ fontWeight: 500 }}>
+          <Box sx={{ mb: 1 }}>
+            <Typography variant="body2" sx={{ fontWeight: 500 }}>
               {employee.contractType}
             </Typography>
           </Box>
+
+          {/* Leave To Section - Added with proper positioning */}
+          {employee.attendance && employee.attendance.includes("Leave") && (
+            <Box>
+              <Typography
+                variant="caption"
+                sx={{ color: "text.secondary", mb: 0.5, display: "block" }}
+              >
+                Leave To:
+              </Typography>
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                {employee.attendance.replace("Leave for ", "")}
+              </Typography>
+            </Box>
+          )}
         </Box>
       </CardContent>
     </Card>
