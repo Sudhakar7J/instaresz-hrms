@@ -52,7 +52,7 @@ export default function JanuaryEvents({
           sx={{
             display: "flex",
             background: "#f5f5f5",
-            borderRadius: "20px",
+            borderRadius: "4px",
             p: "2px",
             position: "relative",
             border: "1px solid #eeeeee",
@@ -65,7 +65,7 @@ export default function JanuaryEvents({
               py: 0.5,
               backgroundColor:
                 activeTab === "timeOff" ? "white" : "transparent",
-              borderRadius: "20px",
+              borderRadius: "4px",
               transition: "all 0.2s ease",
               cursor: "pointer",
               position: "relative",
@@ -92,7 +92,7 @@ export default function JanuaryEvents({
               py: 0.5,
               backgroundColor:
                 activeTab === "birthday" ? "white" : "transparent",
-              borderRadius: "20px",
+              borderRadius: "4px",
               transition: "all 0.2s ease",
               cursor: "pointer",
               boxShadow:
