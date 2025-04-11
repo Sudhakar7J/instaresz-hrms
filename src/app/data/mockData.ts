@@ -92,21 +92,31 @@ export const birthdayEvents: Event[] = [
 export const todaySchedule: Event[] = [
   {
     id: "1",
-    title: "Daily",
-    time: "09:00",
-    type: "Meeting",
+    title: "Online Interview with UI Candidate",
+    time: "09:35",
+    type: "interview",
+    color: "#4caf50",
   },
   {
     id: "2",
     title: "Weekly meeting",
     time: "13:00",
-    type: "",
+    type: "meeting",
+    color: "#ffb74d",
   },
   {
     id: "3",
     title: "Psychology test",
     time: "17:00",
-    type: "",
+    type: "test",
+    color: "#ce93d8",
+  },
+  {
+    id: "4",
+    title: "Replying email to applicants",
+    time: "15:00",
+    type: "email",
+    color: "#b0bec5",
   },
 ];
 
@@ -195,5 +205,78 @@ export const employeeDetails: Employee[] = [
     avatar: "/avatars/brooklyn.jpg",
     department: "Design",
     jobTitle: "Creative Director",
+  },
+];
+
+// Different schedule data for each day
+export const jan28Schedule: Event[] = [
+  {
+    id: "1",
+    title: "Online Interview with UI Candidate",
+    time: "09:35",
+    type: "interview",
+    color: "#4caf50",
+  },
+  {
+    id: "2",
+    title: "Weekly meeting",
+    time: "13:00",
+    type: "meeting",
+    color: "#ffb74d",
+  },
+  {
+    id: "3",
+    title: "Psychology test",
+    time: "17:00",
+    type: "test",
+    color: "#ce93d8",
+  },
+  {
+    id: "4",
+    title: "Replying email to applicants",
+    time: "15:00",
+    type: "email",
+    color: "#b0bec5",
+  },
+];
+
+export const jan29Schedule: Event[] = [
+  {
+    id: "1",
+    title: "Team standup",
+    time: "08:30",
+    type: "meeting",
+    color: "#ffb74d",
+  },
+  {
+    id: "2",
+    title: "Code review session",
+    time: "10:00",
+    type: "meeting",
+    color: "#4caf50",
+  },
+  {
+    id: "3",
+    title: "Project planning",
+    time: "14:30",
+    type: "meeting",
+    color: "#90caf9",
+  },
+];
+
+export const jan30Schedule: Event[] = [
+  {
+    id: "1",
+    title: "Design review",
+    time: "09:00",
+    type: "meeting",
+    color: "#ffb74d",
+  },
+  {
+    id: "2",
+    title: "Client presentation",
+    time: "11:00",
+    type: "meeting",
+    color: "#f44336",
   },
 ];
