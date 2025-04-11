@@ -26,7 +26,7 @@ interface TodayScheduleProps {
   date: string;
 }
 
-export default function TodaySchedule({ events, date }: TodayScheduleProps) {
+export default function TodaySchedule({ date }: TodayScheduleProps) {
   const [selectedDate, setSelectedDate] = useState(date);
 
   const handleDateChange = (event: SelectChangeEvent<string>) => {
@@ -70,7 +70,7 @@ export default function TodaySchedule({ events, date }: TodayScheduleProps) {
 
     // Determine height and vertical position based on event type
     let top = "20%";
-    let height = "30px";
+    const height = "30px";
     let width = "120px";
 
     if (event.type === "meeting") {

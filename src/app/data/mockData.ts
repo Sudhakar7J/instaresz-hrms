@@ -28,6 +28,7 @@ export interface Employee {
 export interface WorkHours {
   date: string;
   hours: number;
+  overtime?: number;
 }
 
 // Payment method data
@@ -153,13 +154,13 @@ export const employeeData: Employee[] = [
 
 // Member work hours data
 export const workHoursData: WorkHours[] = [
-  { date: "Jan 24", hours: 7.4 },
-  { date: "Jan 25", hours: 8.1 },
-  { date: "Jan 26", hours: 7.8 },
-  { date: "Jan 27", hours: 7.9 },
-  { date: "Jan 28", hours: 7.5 },
-  { date: "Jan 29", hours: 6.0 },
-  { date: "Jan 30", hours: 5.0 },
+  { date: "Jan 24", hours: 7.4, overtime: 1.2 },
+  { date: "Jan 25", hours: 8.1, overtime: 0 },
+  { date: "Jan 26", hours: 7.8, overtime: 2.5 },
+  { date: "Jan 27", hours: 7.9, overtime: 0 },
+  { date: "Jan 28", hours: 7.5, overtime: 1.4 },
+  { date: "Jan 29", hours: 5.0, overtime: 0 },
+  { date: "Jan 30", hours: 4.0, overtime: 0 },
 ];
 
 // Employee details
