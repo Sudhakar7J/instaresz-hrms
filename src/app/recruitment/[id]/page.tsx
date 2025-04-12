@@ -9,20 +9,18 @@ import {
   Tab,
   Button,
   Divider,
-  IconButton,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
   Avatar,
-  Chip,
+  InputAdornment,
+  TextField,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AttachFileIcon from "@mui/icons-material/AttachFile";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import ArticleIcon from "@mui/icons-material/Article";
+import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import CommentIcon from "@mui/icons-material/Comment";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import { useState, useEffect } from "react";
 import {
   jobListings,
@@ -108,6 +106,25 @@ export default function JobDetailsPage() {
     }
   };
 
+  // Add a function to group candidates by status
+  const groupCandidatesByStatus = (candidates: Candidate[]) => {
+    const grouped: Record<string, Candidate[]> = {
+      Sourced: [],
+      "In Progress": [],
+      Interview: [],
+      Hired: [],
+      Rejected: [],
+    };
+
+    candidates.forEach((candidate) => {
+      if (grouped[candidate.status]) {
+        grouped[candidate.status].push(candidate);
+      }
+    });
+
+    return grouped;
+  };
+
   if (!job) {
     return (
       <Box sx={{ p: 3 }}>
@@ -177,16 +194,12 @@ export default function JobDetailsPage() {
                 <Box
                   component="span"
                   sx={{
-                    width: 20,
-                    height: 20,
-                    bgcolor: "#eef2ff",
-                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     mr: 1,
                     "& svg": {
-                      fontSize: 14,
+                      fontSize: 18,
                       color: "#5271ff",
                     },
                   }}
@@ -203,29 +216,17 @@ export default function JobDetailsPage() {
                 <Box
                   component="span"
                   sx={{
-                    width: 20,
-                    height: 20,
-                    bgcolor: "#eef2ff",
-                    borderRadius: "4px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     mr: 1,
                     "& svg": {
-                      fontSize: 14,
+                      fontSize: 18,
                       color: "#5271ff",
                     },
                   }}
                 >
-                  <Box
-                    component="span"
-                    sx={{
-                      width: 10,
-                      height: 10,
-                      borderRadius: "50%",
-                      bgcolor: "#5271ff",
-                    }}
-                  />
+                  <PeopleOutlineIcon fontSize="inherit" />
                 </Box>
               }
               iconPosition="start"
@@ -290,7 +291,7 @@ export default function JobDetailsPage() {
                 </Typography>
               </Box>
 
-              {/* What you'll do */}
+              {/* What you&apos;ll do */}
               <Box sx={{ mb: 3 }}>
                 <Typography variant="h6" fontWeight={600} gutterBottom>
                   What you&apos;ll do
@@ -416,145 +417,308 @@ export default function JobDetailsPage() {
         {/* Candidates Tab Panel */}
         <TabPanel value={tabValue} index={1}>
           <Box sx={{ px: 3, pb: 3 }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                mb: 3,
+              }}
+            >
+              <Typography variant="h6" fontWeight={600}>
+                Candidates
+              </Typography>
+              <Box sx={{ display: "flex", gap: 2 }}>
+                <TextField
+                  placeholder="Search name or email here..."
+                  size="small"
+                  sx={{
+                    width: 240,
+                    "& .MuiOutlinedInput-root": {
+                      borderRadius: "8px",
+                      fontSize: "0.875rem",
+                    },
+                  }}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchIcon
+                          fontSize="small"
+                          sx={{ color: "#adb5bd" }}
+                        />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  sx={{
+                    backgroundColor: "#5271ff",
+                    color: "white",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    "&:hover": {
+                      backgroundColor: "#3a57e8",
+                    },
+                  }}
+                >
+                  Add Candidate
+                </Button>
+              </Box>
+            </Box>
+
             {jobCandidates.length > 0 ? (
-              <TableContainer>
-                <Table sx={{ minWidth: 650 }}>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell
-                        sx={{
-                          fontWeight: 500,
-                          color: "text.secondary",
-                          fontSize: "0.75rem",
-                        }}
-                      >
-                        Candidate Name
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 500,
-                          color: "text.secondary",
-                          fontSize: "0.75rem",
-                        }}
-                      >
-                        Status
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 500,
-                          color: "text.secondary",
-                          fontSize: "0.75rem",
-                        }}
-                      >
-                        Applied Date
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 500,
-                          color: "text.secondary",
-                          fontSize: "0.75rem",
-                        }}
-                      >
-                        Resume
-                      </TableCell>
-                      <TableCell
-                        sx={{
-                          fontWeight: 500,
-                          color: "text.secondary",
-                          fontSize: "0.75rem",
-                        }}
-                      ></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {jobCandidates.map((candidate) => {
-                      const statusColor = getStatusColor(candidate.status);
+              <>
+                {/* Status labels row - horizontal stripe */}
+                <Box sx={{ display: "flex", width: "100%", mb: 3 }}>
+                  {Object.entries(groupCandidatesByStatus(jobCandidates)).map(
+                    ([status, candidates]) => {
+                      const statusColor = getStatusColor(status);
                       return (
-                        <TableRow
-                          key={candidate.id}
-                          hover
+                        <Box
+                          key={status}
                           sx={{
-                            "&:hover": {
-                              backgroundColor: "#f5f7fa",
-                            },
+                            flex: 1,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            py: 0.75,
+                            borderRadius: "8px",
+                            bgcolor: statusColor.bg,
+                            color: statusColor.text,
+                            mx: 0.5,
+                            position: "relative",
                           }}
                         >
-                          <TableCell>
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
-                              <Avatar
-                                src={candidate.avatar}
-                                alt={candidate.name}
-                                sx={{ width: 36, height: 36, mr: 2 }}
-                              />
-                              <Box>
-                                <Typography variant="body2" fontWeight={500}>
-                                  {candidate.name}
-                                </Typography>
-                                <Typography
-                                  variant="caption"
-                                  color="text.secondary"
-                                >
-                                  {candidate.email}
-                                </Typography>
-                              </Box>
-                            </Box>
-                          </TableCell>
-                          <TableCell>
-                            <Chip
-                              label={candidate.status}
-                              size="small"
-                              sx={{
-                                backgroundColor: statusColor.bg,
-                                color: statusColor.text,
-                                borderRadius: "12px",
-                                fontSize: "0.75rem",
-                                fontWeight: 500,
-                                height: "24px",
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <Typography variant="body2">
-                              {candidate.appliedDate}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            {candidate.resume && (
-                              <Box
+                          <Typography
+                            variant="body2"
+                            fontWeight={600}
+                            sx={{
+                              fontSize: "0.8rem",
+                              textTransform: "uppercase",
+                            }}
+                          >
+                            {status}
+                          </Typography>
+                          <Box
+                            sx={{
+                              position: "absolute",
+                              right: 8,
+                              bgcolor: "rgba(255,255,255,0.7)",
+                              px: 1,
+                              py: 0.25,
+                              borderRadius: "4px",
+                              fontSize: "0.75rem",
+                              fontWeight: 600,
+                            }}
+                          >
+                            {candidates.length}
+                          </Box>
+                        </Box>
+                      );
+                    }
+                  )}
+                </Box>
+
+                {/* Content section - full width columns */}
+                <Box sx={{ display: "flex", width: "100%", gap: 2 }}>
+                  {Object.entries(groupCandidatesByStatus(jobCandidates)).map(
+                    ([status, candidates]) => {
+                      return (
+                        <Box
+                          key={status}
+                          sx={{
+                            flex: 1,
+                            display: "flex",
+                            flexDirection: "column",
+                            gap: 2,
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              flexDirection: "column",
+                              gap: 2,
+                            }}
+                          >
+                            {candidates.map((candidate) => (
+                              <Paper
+                                key={candidate.id}
                                 sx={{
-                                  display: "flex",
-                                  alignItems: "center",
+                                  p: 2,
+                                  borderRadius: "8px",
+                                  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+                                  transition: "all 0.2s",
+                                  "&:hover": {
+                                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                                  },
                                 }}
                               >
-                                <AttachFileIcon
-                                  fontSize="small"
-                                  sx={{ color: "#5271ff", mr: 0.5 }}
-                                />
-                                <Typography
-                                  variant="body2"
-                                  color="#5271ff"
-                                  sx={{ cursor: "pointer" }}
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    mb: 1.5,
+                                  }}
                                 >
-                                  Resume
-                                </Typography>
+                                  <Avatar
+                                    src={candidate.avatar}
+                                    alt={candidate.name}
+                                    sx={{ width: 32, height: 32, mr: 1.5 }}
+                                  />
+                                  <Box>
+                                    <Typography
+                                      variant="body2"
+                                      fontWeight={500}
+                                      noWrap
+                                    >
+                                      {candidate.name}
+                                    </Typography>
+                                    <Typography
+                                      variant="caption"
+                                      color="text.secondary"
+                                      noWrap
+                                      sx={{ display: "block" }}
+                                    >
+                                      {candidate.email}
+                                    </Typography>
+                                  </Box>
+                                </Box>
+
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    borderTop: "1px solid #eeeeee",
+                                    pt: 1.5,
+                                  }}
+                                >
+                                  <Box
+                                    sx={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                      color: "#6c757d",
+                                    }}
+                                  >
+                                    <LinkedInIcon
+                                      sx={{ fontSize: 16, mr: 1 }}
+                                    />
+                                    <Typography variant="caption">
+                                      LinkedIn
+                                    </Typography>
+                                  </Box>
+
+                                  <Box sx={{ display: "flex", gap: 1 }}>
+                                    {candidate.resume && (
+                                      <Box
+                                        sx={{
+                                          bgcolor: "#f2f3f5",
+                                          borderRadius: "4px",
+                                          width: 24,
+                                          height: 24,
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          cursor: "pointer",
+                                        }}
+                                      >
+                                        <ArticleIcon
+                                          sx={{
+                                            fontSize: 14,
+                                            color: "#6c757d",
+                                          }}
+                                        />
+                                      </Box>
+                                    )}
+                                    <Box
+                                      sx={{
+                                        bgcolor: "#f2f3f5",
+                                        borderRadius: "4px",
+                                        width: 24,
+                                        height: 24,
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      <CommentIcon
+                                        sx={{ fontSize: 14, color: "#6c757d" }}
+                                      />
+                                    </Box>
+                                  </Box>
+                                </Box>
+                              </Paper>
+                            ))}
+                            {candidates.length === 0 && (
+                              <Box
+                                sx={{
+                                  height: 80,
+                                  borderRadius: 2,
+                                  border: "1px dashed #d1d5db",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "center",
+                                  color: "#9ca3af",
+                                  fontSize: "0.8rem",
+                                }}
+                              >
+                                No candidates
                               </Box>
                             )}
-                          </TableCell>
-                          <TableCell align="right">
-                            <IconButton size="small">
-                              <MoreVertIcon fontSize="small" />
-                            </IconButton>
-                          </TableCell>
-                        </TableRow>
+                          </Box>
+                        </Box>
                       );
-                    })}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+                    }
+                  )}
+                </Box>
+              </>
             ) : (
-              <Typography variant="body1">
-                No candidates have applied for this position yet.
-              </Typography>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: 300,
+                  bgcolor: "#f9fafb",
+                  borderRadius: 2,
+                  p: 4,
+                  textAlign: "center",
+                }}
+              >
+                <Typography variant="h6" color="text.secondary" gutterBottom>
+                  No candidates yet
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mb: 3, maxWidth: 400 }}
+                >
+                  Start adding candidates to this job listing by clicking the
+                  &quot;Add Candidate&quot; button.
+                </Typography>
+                <Button
+                  variant="contained"
+                  startIcon={<AddIcon />}
+                  sx={{
+                    backgroundColor: "#5271ff",
+                    color: "white",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                    fontSize: "0.875rem",
+                    fontWeight: 500,
+                    "&:hover": {
+                      backgroundColor: "#3a57e8",
+                    },
+                  }}
+                >
+                  Add Candidate
+                </Button>
+              </Box>
             )}
           </Box>
         </TabPanel>

@@ -263,7 +263,7 @@ export default function EmployeePage() {
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Manage your employees
-            </Typography>
+      </Typography>
           </Box>
         </Box>
 
@@ -295,7 +295,7 @@ export default function EmployeePage() {
       </Box>
 
       {/* Main content */}
-      <Paper
+          <Paper
         sx={{
           borderRadius: 2,
           overflow: "hidden",
@@ -869,7 +869,7 @@ export default function EmployeePage() {
                           sx={{
                             backgroundColor: statusColor.bg,
                             color: statusColor.text,
-                            borderRadius: "12px",
+              borderRadius: "12px",
                             fontSize: "0.75rem",
                             fontWeight: 500,
                             height: "24px",
@@ -1034,7 +1034,7 @@ export default function EmployeePage() {
             </Box>
           </Box>
         </TabPanel>
-      </Paper>
+          </Paper>
     </Box>
   );
 }
