@@ -611,3 +611,227 @@ export const candidates: Candidate[] = [
     coverLetter: "Cover-Letter-Emma-Wilson.pdf",
   },
 ];
+
+// Add payroll interfaces and mock data
+// Payroll interfaces
+export interface PayrollRecord {
+  id: string;
+  employeeName: string;
+  employeeId: string;
+  payPeriod: "Bi-weekly" | "Monthly";
+  grossPay: number;
+  deductions: number;
+  netPay: number;
+  status: "Processed" | "Pending" | "Paid";
+  payDate?: string;
+  details?: {
+    taxes: number;
+    insurance: number;
+    retirement: number;
+    other: number;
+  };
+}
+
+// Mock payroll data
+export const payrollRecords: PayrollRecord[] = [
+  {
+    id: "pay001",
+    employeeName: "Allison Kessler",
+    employeeId: "emp001",
+    payPeriod: "Bi-weekly",
+    grossPay: 2800,
+    deductions: 500,
+    netPay: 2300,
+    status: "Processed",
+    payDate: "2023-09-15",
+    details: {
+      taxes: 350,
+      insurance: 100,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay002",
+    employeeName: "Michael Farrell",
+    employeeId: "emp002",
+    payPeriod: "Bi-weekly",
+    grossPay: 3200,
+    deductions: 600,
+    netPay: 2600,
+    status: "Pending",
+    details: {
+      taxes: 420,
+      insurance: 120,
+      retirement: 60,
+      other: 0,
+    },
+  },
+  {
+    id: "pay003",
+    employeeName: "Samantha Lewis",
+    employeeId: "emp003",
+    payPeriod: "Monthly",
+    grossPay: 4000,
+    deductions: 700,
+    netPay: 3300,
+    status: "Paid",
+    payDate: "2023-09-01",
+    details: {
+      taxes: 500,
+      insurance: 150,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay004",
+    employeeName: "Robert Johnson",
+    employeeId: "emp004",
+    payPeriod: "Monthly",
+    grossPay: 3500,
+    deductions: 600,
+    netPay: 2900,
+    status: "Processed",
+    payDate: "2023-09-01",
+    details: {
+      taxes: 450,
+      insurance: 100,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay005",
+    employeeName: "Emily Phillips",
+    employeeId: "emp005",
+    payPeriod: "Bi-weekly",
+    grossPay: 2600,
+    deductions: 500,
+    netPay: 2100,
+    status: "Pending",
+    details: {
+      taxes: 350,
+      insurance: 100,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay006",
+    employeeName: "David Nguyen",
+    employeeId: "emp006",
+    payPeriod: "Bi-weekly",
+    grossPay: 2900,
+    deductions: 550,
+    netPay: 2350,
+    status: "Paid",
+    payDate: "2023-09-15",
+    details: {
+      taxes: 380,
+      insurance: 120,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay007",
+    employeeName: "Jennifer Brown",
+    employeeId: "emp007",
+    payPeriod: "Monthly",
+    grossPay: 3800,
+    deductions: 650,
+    netPay: 3150,
+    status: "Processed",
+    payDate: "2023-09-01",
+    details: {
+      taxes: 480,
+      insurance: 120,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay008",
+    employeeName: "Christopher Wilson",
+    employeeId: "emp008",
+    payPeriod: "Monthly",
+    grossPay: 3300,
+    deductions: 600,
+    netPay: 2700,
+    status: "Pending",
+    details: {
+      taxes: 420,
+      insurance: 130,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay009",
+    employeeName: "Amanda Martinez",
+    employeeId: "emp009",
+    payPeriod: "Bi-weekly",
+    grossPay: 2700,
+    deductions: 500,
+    netPay: 2200,
+    status: "Paid",
+    payDate: "2023-09-15",
+    details: {
+      taxes: 360,
+      insurance: 90,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay010",
+    employeeName: "Daniel Taylor",
+    employeeId: "emp010",
+    payPeriod: "Bi-weekly",
+    grossPay: 2750,
+    deductions: 525,
+    netPay: 2225,
+    status: "Processed",
+    payDate: "2023-09-15",
+    details: {
+      taxes: 370,
+      insurance: 105,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay011",
+    employeeName: "Jessica Rivera",
+    employeeId: "emp011",
+    payPeriod: "Monthly",
+    grossPay: 3900,
+    deductions: 680,
+    netPay: 3220,
+    status: "Paid",
+    payDate: "2023-09-01",
+    details: {
+      taxes: 500,
+      insurance: 130,
+      retirement: 50,
+      other: 0,
+    },
+  },
+  {
+    id: "pay012",
+    employeeName: "Brian Turner",
+    employeeId: "emp012",
+    payPeriod: "Bi-weekly",
+    grossPay: 2850,
+    deductions: 540,
+    netPay: 2310,
+    status: "Pending",
+    details: {
+      taxes: 380,
+      insurance: 110,
+      retirement: 50,
+      other: 0,
+    },
+  },
+];
