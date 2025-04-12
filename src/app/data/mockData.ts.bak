@@ -431,24 +431,6 @@ export const jobListings: JobListing[] = [
     workMode: "Remote",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "Join our dynamic development team building cutting-edge web applications. We foster a collaborative environment where learning and growth are encouraged.",
-      responsibilities: [
-        "Assist senior developers in building and testing user interfaces.",
-        "Write clean, maintainable HTML, CSS, and JavaScript.",
-        "Collaborate with designers to implement UI designs.",
-        "Debug and troubleshoot frontend issues.",
-        "Learn and apply new web technologies.",
-      ],
-      requirements: [
-        "Basic understanding of HTML, CSS, and JavaScript.",
-        "Familiarity with a frontend framework (React, Vue, Angular) is a plus.",
-        "Eagerness to learn and grow in a fast-paced environment.",
-        "Good communication and teamwork skills.",
-        "Portfolio showcasing personal projects or coursework.",
-      ],
-    },
   },
   {
     id: "3",
@@ -460,24 +442,6 @@ export const jobListings: JobListing[] = [
     workMode: "Onsite",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "We are a creative agency specializing in compelling visual storytelling. Our team produces high-quality animations and videos for a diverse range of clients.",
-      responsibilities: [
-        "Create engaging motion graphics for marketing campaigns, social media, and video productions.",
-        "Animate static designs and illustrations.",
-        "Collaborate with the creative team to develop visual concepts.",
-        "Ensure brand consistency across all animated content.",
-        "Stay updated on motion design trends and software.",
-      ],
-      requirements: [
-        "Proven experience as a Motion Graphic Designer.",
-        "Proficiency in Adobe After Effects, Premiere Pro, and Illustrator.",
-        "Strong portfolio showcasing animation skills.",
-        "Understanding of design principles, typography, and color theory.",
-        "Ability to work independently and meet deadlines.",
-      ],
-    },
   },
   {
     id: "4",
@@ -489,24 +453,6 @@ export const jobListings: JobListing[] = [
     workMode: "Onsite",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "A leading digital marketing agency focused on driving organic growth for our clients through strategic SEO practices.",
-      responsibilities: [
-        "Conduct keyword research and analysis.",
-        "Optimize website content, landing pages, and paid search copy.",
-        "Develop and implement link building strategies.",
-        "Monitor and analyze SEO performance using tools like Google Analytics and SEMrush.",
-        "Stay up-to-date with SEO and digital marketing trends.",
-      ],
-      requirements: [
-        "Proven SEO experience.",
-        "In-depth knowledge of keyword research, SEO copywriting, and the behaviors of search engines.",
-        "Experience with website analytics tools (e.g., Google Analytics, NetInsight, Omniture, WebTrends).",
-        "Familiarity with HTML, CSS, and JavaScript from an SEO perspective.",
-        "Strong analytical and problem-solving skills.",
-      ],
-    },
   },
   {
     id: "5",
@@ -518,24 +464,6 @@ export const jobListings: JobListing[] = [
     workMode: "Remote",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "We manage complex projects across various industries, ensuring timely delivery and client satisfaction. Join our organized and efficient project management team.",
-      responsibilities: [
-        "Assist the Project Manager in planning, executing, and monitoring projects.",
-        "Coordinate project activities and resource allocation.",
-        "Track project progress and report on milestones and deliverables.",
-        "Facilitate communication between team members and stakeholders.",
-        "Help manage project documentation and risks.",
-      ],
-      requirements: [
-        "Proven experience in project coordination or assistant project management.",
-        "Strong organizational and multitasking skills.",
-        "Excellent communication and interpersonal abilities.",
-        "Proficiency in project management software (e.g., Jira, Asana, Trello).",
-        "Understanding of project management methodologies.",
-      ],
-    },
   },
   {
     id: "6",
@@ -547,24 +475,6 @@ export const jobListings: JobListing[] = [
     workMode: "Onsite",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "A vibrant design studio seeking a creative intern to support our design team on various projects. Gain hands-on experience in a professional setting.",
-      responsibilities: [
-        "Assist senior designers with design tasks for print and digital media.",
-        "Create illustrations, logos, and layouts based on briefs.",
-        "Prepare files for print and web production.",
-        "Learn and apply brand guidelines.",
-        "Participate in team brainstorming sessions.",
-      ],
-      requirements: [
-        "Currently pursuing or recently completed a degree in Graphic Design or a related field.",
-        "Basic knowledge of Adobe Creative Suite (Photoshop, Illustrator, InDesign).",
-        "A portfolio demonstrating design skills and creativity.",
-        "Eagerness to learn and take direction.",
-        "Good communication skills.",
-      ],
-    },
   },
   {
     id: "7",
@@ -576,24 +486,6 @@ export const jobListings: JobListing[] = [
     workMode: "Onsite",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "An innovative animation studio creating stunning 3D visuals for games, films, and advertising. We push the boundaries of digital art.",
-      responsibilities: [
-        "Create high-quality 3D models, textures, and animations.",
-        "Work from concept art and storyboards.",
-        "Collaborate with the art director and other animators.",
-        "Optimize assets for real-time rendering or pre-rendered sequences.",
-        "Rig and skin characters and objects.",
-      ],
-      requirements: [
-        "1-3 years of experience in 3D modeling and animation.",
-        "Proficiency in 3D software (e.g., Maya, Blender, 3ds Max).",
-        "Strong portfolio showcasing 3D work.",
-        "Understanding of animation principles, timing, and weight.",
-        "Ability to take feedback and iterate on work.",
-      ],
-    },
   },
   {
     id: "8",
@@ -605,24 +497,6 @@ export const jobListings: JobListing[] = [
     workMode: "Remote",
     activeUntil: "Jan 31, 2024",
     status: "Active",
-    detailedDescription: {
-      aboutCompany:
-        "A technology company building scalable and robust web applications for enterprise clients. We value clean code, collaboration, and continuous improvement.",
-      responsibilities: [
-        "Lead the design and development of complex web applications.",
-        "Mentor junior developers and conduct code reviews.",
-        "Collaborate with product managers and designers to define requirements.",
-        "Architect scalable backend systems and APIs.",
-        "Ensure code quality, performance, and security.",
-      ],
-      requirements: [
-        "5+ years of experience in web development (frontend and/or backend).",
-        "Expertise in relevant technologies (e.g., Node.js, Python, Java, React, SQL/NoSQL databases).",
-        "Strong understanding of software architecture and design patterns.",
-        "Experience with cloud platforms (AWS, Azure, GCP).",
-        "Excellent problem-solving and communication skills.",
-      ],
-    },
   },
   {
     id: "9",
@@ -634,24 +508,6 @@ export const jobListings: JobListing[] = [
     workMode: "Hybrid",
     activeUntil: "Dec 15, 2023",
     status: "Closed",
-    detailedDescription: {
-      aboutCompany:
-        "A fast-growing company looking for a versatile Marketing Specialist to drive brand awareness and lead generation across multiple channels.",
-      responsibilities: [
-        "Develop and execute integrated marketing campaigns.",
-        "Create engaging content for blogs, social media, email, and website.",
-        "Manage social media presence and community engagement.",
-        "Analyze marketing data and report on campaign performance.",
-        "Collaborate with sales and product teams.",
-      ],
-      requirements: [
-        "Proven experience as a Marketing Specialist or similar role.",
-        "Solid understanding of digital marketing channels (SEO, SEM, social media, email marketing).",
-        "Experience with marketing automation and CRM tools.",
-        "Excellent writing and communication skills.",
-        "Strong analytical skills and data-driven thinking.",
-      ],
-    },
   },
   {
     id: "10",
@@ -663,24 +519,6 @@ export const jobListings: JobListing[] = [
     workMode: "Remote",
     activeUntil: "Dec 20, 2023",
     status: "Closed",
-    detailedDescription: {
-      aboutCompany:
-        "We are building the next generation of backend services powering innovative applications. Join our team of experienced engineers.",
-      responsibilities: [
-        "Design, develop, and maintain scalable backend APIs and services.",
-        "Work with databases (SQL and NoSQL) to store and retrieve data efficiently.",
-        "Implement security best practices.",
-        "Write unit and integration tests.",
-        "Collaborate with frontend developers and DevOps.",
-      ],
-      requirements: [
-        "Proven experience as a Backend Developer.",
-        "Proficiency in backend languages (e.g., Node.js, Python, Go, Java).",
-        "Experience with RESTful API design and implementation.",
-        "Strong understanding of database concepts.",
-        "Familiarity with containerization (Docker) and CI/CD pipelines.",
-      ],
-    },
   },
   {
     id: "11",
@@ -692,24 +530,6 @@ export const jobListings: JobListing[] = [
     workMode: "Onsite",
     activeUntil: "Dec 31, 2023",
     status: "Closed",
-    detailedDescription: {
-      aboutCompany:
-        "A product-led organization focused on creating exceptional user experiences. We empower our Product Managers to own their products from strategy to execution.",
-      responsibilities: [
-        "Define product vision, strategy, and roadmap.",
-        "Gather and prioritize product requirements from users, stakeholders, and market research.",
-        "Work closely with engineering, design, and marketing teams.",
-        "Launch new products and features.",
-        "Analyze product performance and iterate based on data.",
-      ],
-      requirements: [
-        "Proven experience as a Product Manager in a tech company.",
-        "Strong understanding of the product development lifecycle.",
-        "Excellent communication, presentation, and leadership skills.",
-        "Ability to analyze data and make informed decisions.",
-        "Technical background or strong understanding of technology is a plus.",
-      ],
-    },
   },
   {
     id: "12",
@@ -721,24 +541,6 @@ export const jobListings: JobListing[] = [
     workMode: "Remote",
     activeUntil: "Jan 05, 2024",
     status: "Closed",
-    detailedDescription: {
-      aboutCompany:
-        "Leveraging data to drive business decisions. Our analytics team works across departments to uncover insights and optimize performance.",
-      responsibilities: [
-        "Collect, clean, and analyze data from various sources.",
-        "Identify trends, patterns, and insights in data.",
-        "Create reports, dashboards, and visualizations to communicate findings.",
-        "Support business units with ad-hoc data requests.",
-        "Develop and maintain data models.",
-      ],
-      requirements: [
-        "Proven experience as a Data Analyst.",
-        "Proficiency in SQL and data analysis tools (e.g., Python/R, Excel, Tableau/Power BI).",
-        "Strong analytical and problem-solving skills.",
-        "Excellent attention to detail.",
-        "Ability to communicate complex findings clearly.",
-      ],
-    },
   },
 ];
 
@@ -807,104 +609,6 @@ export const candidates: Candidate[] = [
     appliedDate: "Jan 10, 2024",
     resume: "Resume-Emma-Wilson.pdf",
     coverLetter: "Cover-Letter-Emma-Wilson.pdf",
-  },
-  {
-    id: "6",
-    jobId: "3", // Motion Graphic Designer
-    name: "Olivia Martinez",
-    email: "olivia.m@example.com",
-    avatar: "/avatars/olivia.jpg",
-    status: "Sourced",
-    appliedDate: "Jan 21, 2024",
-  },
-  {
-    id: "7",
-    jobId: "4", // SEO Specialist
-    name: "William Garcia",
-    email: "will.garcia@example.com",
-    avatar: "/avatars/william.jpg",
-    status: "Interview",
-    appliedDate: "Jan 19, 2024",
-    resume: "Resume-William-Garcia.pdf",
-  },
-  {
-    id: "8",
-    jobId: "5", // Project Assistant Manager
-    name: "Ava Brown",
-    email: "ava.b@example.com",
-    avatar: "/avatars/ava.jpg",
-    status: "In Progress",
-    appliedDate: "Jan 22, 2024",
-    resume: "Resume-Ava-Brown.pdf",
-    coverLetter: "Cover-Letter-Ava-Brown.pdf",
-  },
-  {
-    id: "9",
-    jobId: "6", // Intern Graphic Design
-    name: "Noah Davis",
-    email: "noah.davis@example.com",
-    avatar: "/avatars/noah.jpg",
-    status: "Hired",
-    appliedDate: "Jan 12, 2024",
-  },
-  {
-    id: "10",
-    jobId: "7", // 3D Animation
-    name: "Isabella Miller",
-    email: "isabella.m@example.com",
-    avatar: "/avatars/isabella.jpg",
-    status: "Sourced",
-    appliedDate: "Jan 23, 2024",
-  },
-  {
-    id: "11",
-    jobId: "8", // Senior Web Developer
-    name: "James Rodriguez",
-    email: "james.r@example.com",
-    avatar: "/avatars/james_r.jpg",
-    status: "Interview",
-    appliedDate: "Jan 16, 2024",
-    resume: "Resume-James-Rodriguez.pdf",
-  },
-  {
-    id: "12",
-    jobId: "9", // Marketing Specialist
-    name: "Charlotte Wilson",
-    email: "charlotte.w@example.com",
-    avatar: "/avatars/charlotte.jpg",
-    status: "Rejected",
-    appliedDate: "Dec 10, 2023",
-    resume: "Resume-Charlotte-Wilson.pdf",
-  },
-  {
-    id: "13",
-    jobId: "10", // Backend Developer
-    name: "Liam Anderson",
-    email: "liam.a@example.com",
-    avatar: "/avatars/liam.jpg",
-    status: "Hired",
-    appliedDate: "Dec 18, 2023",
-    resume: "Resume-Liam-Anderson.pdf",
-  },
-  {
-    id: "14",
-    jobId: "11", // Product Manager
-    name: "Mia Thomas",
-    email: "mia.thomas@example.com",
-    avatar: "/avatars/mia.jpg",
-    status: "In Progress",
-    appliedDate: "Dec 28, 2023",
-    resume: "Resume-Mia-Thomas.pdf",
-    coverLetter: "Cover-Letter-Mia-Thomas.pdf",
-  },
-  {
-    id: "15",
-    jobId: "12", // Data Analyst
-    name: "Benjamin Jackson",
-    email: "ben.jackson@example.com",
-    avatar: "/avatars/benjamin.jpg",
-    status: "Sourced",
-    appliedDate: "Jan 02, 2024",
   },
 ];
 

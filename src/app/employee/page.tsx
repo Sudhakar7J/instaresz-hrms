@@ -235,39 +235,49 @@ export default function EmployeePage() {
   );
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: { xs: 1, sm: 2 } }}>
       {/* Header section with icon, title and buttons */}
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "flex-start", sm: "center" },
           justifyContent: "space-between",
+          gap: { xs: 2, sm: 0 },
           mb: 3,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             sx={{
-              width: 40,
-              height: 40,
+              width: { xs: 32, sm: 40 },
+              height: { xs: 32, sm: 40 },
               bgcolor: "#eef2ff",
               color: "#5271ff",
               mr: 2,
             }}
           >
-            <PeopleOutlineIcon />
+            <PeopleOutlineIcon sx={{ fontSize: { xs: 20, sm: 24 } }} />
           </Avatar>
           <Box>
-            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                fontSize: { xs: "1.125rem", sm: "1.5rem" },
+              }}
+            >
               Employee
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Manage your employees
-      </Typography>
+            </Typography>
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", gap: 1 }}>
+        <Box
+          sx={{ display: "flex", gap: 1, width: { xs: "100%", sm: "auto" } }}
+        >
           <Button
             variant="outlined"
             startIcon={<FileDownloadOutlinedIcon />}
@@ -276,6 +286,7 @@ export default function EmployeePage() {
               borderColor: "divider",
               textTransform: "none",
               borderRadius: "8px",
+              flex: { xs: 1, sm: "none" },
             }}
           >
             Export
@@ -287,6 +298,7 @@ export default function EmployeePage() {
               bgcolor: "#5271ff",
               textTransform: "none",
               borderRadius: "8px",
+              flex: { xs: 1, sm: "none" },
             }}
           >
             Add Employee
@@ -295,25 +307,31 @@ export default function EmployeePage() {
       </Box>
 
       {/* Main content */}
-          <Paper
+      <Paper
         sx={{
           borderRadius: 2,
           overflow: "hidden",
           boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
         }}
       >
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Box
+          sx={{ borderBottom: 1, borderColor: "divider", overflowX: "auto" }}
+        >
           <Tabs
             value={tabValue}
             onChange={handleTabChange}
             aria-label="employee tabs"
+            variant="scrollable"
+            scrollButtons="auto"
             sx={{
-              px: 2,
+              px: { xs: 1, sm: 2 },
               "& .MuiTab-root": {
                 textTransform: "none",
                 minHeight: "48px",
                 fontSize: "0.875rem",
                 fontWeight: 500,
+                minWidth: { xs: "auto", sm: 160 },
+                px: { xs: 1, sm: 2 },
               },
               "& .Mui-selected": {
                 color: "#5271ff",
@@ -348,22 +366,31 @@ export default function EmployeePage() {
           {/* Title, search and filter bar */}
           <Box
             sx={{
-              px: 2,
+              px: { xs: 1, sm: 2 },
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: { xs: 2, sm: 0 },
               mb: 2,
             }}
           >
             <Typography variant="h6" fontWeight={500}>
               Manage Employees
             </Typography>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+                width: { xs: "100%", sm: "auto" },
+              }}
+            >
               <TextField
                 placeholder="Search keyword..."
                 size="small"
                 sx={{
-                  width: 240,
+                  flex: 1,
+                  maxWidth: { xs: "100%", sm: 240 },
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8px",
                   },
@@ -386,6 +413,7 @@ export default function EmployeePage() {
                   borderRadius: "8px",
                   border: "1px solid",
                   borderColor: "divider",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Filter
@@ -394,206 +422,226 @@ export default function EmployeePage() {
           </Box>
 
           {/* Employee table */}
-          <TableContainer>
-            <Table sx={{ minWidth: 650, tableLayout: "fixed" }} size="medium">
-              <TableHead>
-                <TableRow sx={{ backgroundColor: "#f9fafb" }}>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "220px",
-                    }}
-                  >
-                    Employee Name
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "140px",
-                    }}
-                  >
-                    Phone Number
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "150px",
-                    }}
-                  >
-                    Department
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "140px",
-                    }}
-                  >
-                    Job Title
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "140px",
-                    }}
-                  >
-                    Contract Type
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "100px",
-                    }}
-                  >
-                    Attendance
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "160px",
-                    }}
-                  ></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {paginatedEmployees.map((employee) => (
-                  <TableRow
-                    key={employee.id}
-                    hover
-                    sx={{
-                      "&:hover": {
-                        backgroundColor: "#f5f7fa",
-                      },
-                    }}
-                  >
-                    <TableCell>
-                      <Box sx={{ display: "flex", alignItems: "center" }}>
-                        <Avatar
-                          src={employee.avatar}
-                          alt={employee.name}
-                          sx={{ width: 36, height: 36, mr: 2 }}
-                        />
-                        <Box>
-                          <Typography variant="body2" fontWeight={500}>
-                            {employee.name}
-                          </Typography>
-                          <Typography variant="caption" color="text.secondary">
-                            {employee.email}
-                          </Typography>
-                        </Box>
-                      </Box>
+          <Box sx={{ overflowX: "auto" }}>
+            <TableContainer>
+              <Table sx={{ minWidth: 650 }} size="medium">
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: "#f9fafb" }}>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "220px",
+                      }}
+                    >
+                      Employee Name
                     </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">{employee.phone}</Typography>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "140px",
+                      }}
+                    >
+                      Phone Number
                     </TableCell>
-                    <TableCell>
-                      <Chip
-                        label={
-                          <Box sx={{ display: "flex", alignItems: "center" }}>
-                            <Box
-                              sx={{
-                                width: 8,
-                                height: 8,
-                                borderRadius: "50%",
-                                backgroundColor: getDeptColor(
-                                  employee.department
-                                ),
-                                mr: 1,
-                              }}
-                            />
-                            {employee.department}
-                          </Box>
-                        }
-                        size="small"
-                        sx={{
-                          backgroundColor: `${getDeptColor(
-                            employee.department
-                          )}20`,
-                          color: getDeptColor(employee.department),
-                          borderRadius: "4px",
-                          fontSize: "0.75rem",
-                          fontWeight: 500,
-                          height: "24px",
-                        }}
-                      />
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "150px",
+                      }}
+                    >
+                      Department
                     </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {employee.jobTitle}
-                      </Typography>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "140px",
+                      }}
+                    >
+                      Job Title
                     </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {employee.contractType}
-                      </Typography>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "140px",
+                      }}
+                    >
+                      Contract Type
                     </TableCell>
-                    <TableCell>
-                      <Typography variant="body2">
-                        {employee.attendance}
-                      </Typography>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "100px",
+                      }}
+                    >
+                      Attendance
                     </TableCell>
-                    <TableCell>
-                      <Box sx={{ display: "flex", gap: 1 }}>
-                        <Button
-                          size="small"
-                          variant="outlined"
-                          sx={{
-                            fontSize: "0.75rem",
-                            textTransform: "none",
-                            color: "#757575",
-                            borderColor: "#75757540",
-                            backgroundColor: "transparent",
-                            borderRadius: "6px",
-                            py: 0.5,
-                            "&:hover": {
-                              backgroundColor: "#7575751a",
-                              borderColor: "#75757560",
-                            },
-                          }}
-                        >
-                          See Details
-                        </Button>
-                        <IconButton size="small">
-                          <MoreVertIcon fontSize="small" />
-                        </IconButton>
-                      </Box>
-                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "160px",
+                      }}
+                    ></TableCell>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                </TableHead>
+                <TableBody>
+                  {paginatedEmployees.map((employee) => (
+                    <TableRow
+                      key={employee.id}
+                      hover
+                      sx={{
+                        "&:hover": {
+                          backgroundColor: "#f5f7fa",
+                        },
+                      }}
+                    >
+                      <TableCell>
+                        <Box sx={{ display: "flex", alignItems: "center" }}>
+                          <Avatar
+                            src={employee.avatar}
+                            alt={employee.name}
+                            sx={{ width: 36, height: 36, mr: 2 }}
+                          />
+                          <Box>
+                            <Typography variant="body2" fontWeight={500}>
+                              {employee.name}
+                            </Typography>
+                            <Typography
+                              variant="caption"
+                              color="text.secondary"
+                            >
+                              {employee.email}
+                            </Typography>
+                          </Box>
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2">
+                          {employee.phone}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Chip
+                          label={
+                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                              <Box
+                                sx={{
+                                  width: 8,
+                                  height: 8,
+                                  borderRadius: "50%",
+                                  backgroundColor: getDeptColor(
+                                    employee.department
+                                  ),
+                                  mr: 1,
+                                }}
+                              />
+                              {employee.department}
+                            </Box>
+                          }
+                          size="small"
+                          sx={{
+                            backgroundColor: `${getDeptColor(
+                              employee.department
+                            )}20`,
+                            color: getDeptColor(employee.department),
+                            borderRadius: "4px",
+                            fontSize: "0.75rem",
+                            fontWeight: 500,
+                            height: "24px",
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2">
+                          {employee.jobTitle}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2">
+                          {employee.contractType}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography variant="body2">
+                          {employee.attendance}
+                        </Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Box sx={{ display: "flex", gap: 1 }}>
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            sx={{
+                              fontSize: "0.75rem",
+                              textTransform: "none",
+                              color: "#757575",
+                              borderColor: "#75757540",
+                              backgroundColor: "transparent",
+                              borderRadius: "6px",
+                              py: 0.5,
+                              "&:hover": {
+                                backgroundColor: "#7575751a",
+                                borderColor: "#75757560",
+                              },
+                            }}
+                          >
+                            See Details
+                          </Button>
+                          <IconButton size="small">
+                            <MoreVertIcon fontSize="small" />
+                          </IconButton>
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
 
           {/* Pagination and info */}
           <Box
             sx={{
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: "center",
-              px: 2,
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: { xs: 2, sm: 0 },
+              px: { xs: 1, sm: 2 },
               mt: 2,
               pb: 1,
             }}
           >
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ textAlign: { xs: "center", sm: "left" } }}
+            >
               Showing {startIndex + 1} to {endIndex} of {totalEmployees}{" "}
               employees
             </Typography>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: { xs: "center", sm: "flex-end" },
+                width: "100%",
+              }}
+            >
               <Button
                 variant="text"
                 disabled={page === 1}
@@ -605,6 +653,7 @@ export default function EmployeePage() {
                   border: "1px solid",
                   borderColor: "divider",
                   borderRadius: "8px",
+                  display: { xs: "none", sm: "inline-flex" },
                 }}
               >
                 Previous
@@ -618,6 +667,11 @@ export default function EmployeePage() {
                 shape="rounded"
                 hidePrevButton
                 hideNextButton
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                  },
+                }}
               />
               <Button
                 variant="text"
@@ -630,6 +684,7 @@ export default function EmployeePage() {
                   border: "1px solid",
                   borderColor: "divider",
                   borderRadius: "8px",
+                  display: { xs: "none", sm: "inline-flex" },
                 }}
               >
                 Next
@@ -653,22 +708,31 @@ export default function EmployeePage() {
           {/* Title, search and filter bar */}
           <Box
             sx={{
-              px: 2,
+              px: { xs: 1, sm: 2 },
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: { xs: 2, sm: 0 },
               mb: 2,
             }}
           >
             <Typography variant="h6" fontWeight={500}>
               Request Time Off
             </Typography>
-            <Box sx={{ display: "flex", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: 1,
+                width: { xs: "100%", sm: "auto" },
+              }}
+            >
               <TextField
                 placeholder="Search keyword..."
                 size="small"
                 sx={{
-                  width: 240,
+                  flex: 1,
+                  maxWidth: { xs: "100%", sm: 240 },
                   "& .MuiOutlinedInput-root": {
                     borderRadius: "8px",
                   },
@@ -691,6 +755,7 @@ export default function EmployeePage() {
                   borderRadius: "8px",
                   border: "1px solid",
                   borderColor: "divider",
+                  whiteSpace: "nowrap",
                 }}
               >
                 Filter
@@ -699,291 +764,310 @@ export default function EmployeePage() {
           </Box>
 
           {/* Leave Request Table */}
-          <TableContainer>
-            <Table sx={{ minWidth: 650, tableLayout: "fixed" }} size="medium">
-              <TableHead>
-                <TableRow sx={{ backgroundColor: "#f9fafb" }}>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "220px",
-                    }}
-                  >
-                    Employee Name
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "150px",
-                    }}
-                  >
-                    Leave Type
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "110px",
-                    }}
-                  >
-                    Leave From
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "110px",
-                    }}
-                  >
-                    Leave To
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "70px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Days
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "100px",
-                    }}
-                  >
-                    Status
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      fontWeight: 500,
-                      color: "text.secondary",
-                      fontSize: "0.75rem",
-                      width: "160px",
-                    }}
-                  ></TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {paginatedLeaveRequests.map((request) => {
-                  const statusColor = getStatusColor(request.status);
-                  return (
-                    <TableRow
-                      key={request.id}
-                      hover
+          <Box sx={{ overflowX: "auto" }}>
+            <TableContainer>
+              <Table sx={{ minWidth: 650 }} size="medium">
+                <TableHead>
+                  <TableRow sx={{ backgroundColor: "#f9fafb" }}>
+                    <TableCell
                       sx={{
-                        "&:hover": {
-                          backgroundColor: "#f5f7fa",
-                        },
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "220px",
                       }}
                     >
-                      <TableCell>
-                        <Box sx={{ display: "flex", alignItems: "center" }}>
-                          <Avatar
-                            src={request.employeeAvatar}
-                            alt={request.employeeName}
-                            sx={{ width: 36, height: 36, mr: 2 }}
-                          />
-                          <Box>
-                            <Typography variant="body2" fontWeight={500}>
-                              {request.employeeName}
-                            </Typography>
-                            <Typography
-                              variant="caption"
-                              color="text.secondary"
-                            >
-                              {request.employeeEmail}
-                            </Typography>
-                          </Box>
-                          {request.status === "Pending" && (
-                            <Box
-                              sx={{
-                                width: 8,
-                                height: 8,
-                                borderRadius: "50%",
-                                bgcolor: "#ff6b81",
-                                ml: 1,
-                              }}
+                      Employee Name
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "150px",
+                      }}
+                    >
+                      Leave Type
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "110px",
+                      }}
+                    >
+                      Leave From
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "110px",
+                      }}
+                    >
+                      Leave To
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "70px",
+                        textAlign: "center",
+                      }}
+                    >
+                      Days
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "100px",
+                      }}
+                    >
+                      Status
+                    </TableCell>
+                    <TableCell
+                      sx={{
+                        fontWeight: 500,
+                        color: "text.secondary",
+                        fontSize: "0.75rem",
+                        width: "160px",
+                      }}
+                    ></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {paginatedLeaveRequests.map((request) => {
+                    const statusColor = getStatusColor(request.status);
+                    return (
+                      <TableRow
+                        key={request.id}
+                        hover
+                        sx={{
+                          "&:hover": {
+                            backgroundColor: "#f5f7fa",
+                          },
+                        }}
+                      >
+                        <TableCell>
+                          <Box sx={{ display: "flex", alignItems: "center" }}>
+                            <Avatar
+                              src={request.employeeAvatar}
+                              alt={request.employeeName}
+                              sx={{ width: 36, height: 36, mr: 2 }}
                             />
-                          )}
-                        </Box>
-                      </TableCell>
-                      <TableCell>
-                        <Chip
-                          label={
-                            <Box sx={{ display: "flex", alignItems: "center" }}>
+                            <Box>
+                              <Typography variant="body2" fontWeight={500}>
+                                {request.employeeName}
+                              </Typography>
+                              <Typography
+                                variant="caption"
+                                color="text.secondary"
+                              >
+                                {request.employeeEmail}
+                              </Typography>
+                            </Box>
+                            {request.status === "Pending" && (
                               <Box
                                 sx={{
                                   width: 8,
                                   height: 8,
                                   borderRadius: "50%",
-                                  backgroundColor: getLeaveTypeColor(
-                                    request.leaveType
-                                  ),
-                                  mr: 1,
+                                  bgcolor: "#ff6b81",
+                                  ml: 1,
                                 }}
                               />
-                              {request.leaveType}
-                            </Box>
-                          }
-                          size="small"
-                          sx={{
-                            backgroundColor: `${getLeaveTypeColor(
-                              request.leaveType
-                            )}20`,
-                            color: getLeaveTypeColor(request.leaveType),
-                            borderRadius: "12px",
-                            fontSize: "0.75rem",
-                            fontWeight: 500,
-                            height: "24px",
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="body2">
-                          {request.leaveFrom}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography variant="body2">
-                          {request.leaveTo}
-                        </Typography>
-                      </TableCell>
-                      <TableCell sx={{ textAlign: "center" }}>
-                        <Typography variant="body2">{request.days}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Chip
-                          label={request.status}
-                          size="small"
-                          sx={{
-                            backgroundColor: statusColor.bg,
-                            color: statusColor.text,
-              borderRadius: "12px",
-                            fontSize: "0.75rem",
-                            fontWeight: 500,
-                            height: "24px",
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell>
-                        <Box sx={{ display: "flex", gap: 1 }}>
-                          {request.status === "Pending" ? (
-                            <Box
-                              sx={{
-                                display: "flex",
-                                justifyContent: "flex-end",
-                                width: "100%",
-                                gap: 1,
-                              }}
-                            >
-                              <Button
-                                size="small"
-                                variant="outlined"
+                            )}
+                          </Box>
+                        </TableCell>
+                        <TableCell>
+                          <Chip
+                            label={
+                              <Box
+                                sx={{ display: "flex", alignItems: "center" }}
+                              >
+                                <Box
+                                  sx={{
+                                    width: 8,
+                                    height: 8,
+                                    borderRadius: "50%",
+                                    backgroundColor: getLeaveTypeColor(
+                                      request.leaveType
+                                    ),
+                                    mr: 1,
+                                  }}
+                                />
+                                {request.leaveType}
+                              </Box>
+                            }
+                            size="small"
+                            sx={{
+                              backgroundColor: `${getLeaveTypeColor(
+                                request.leaveType
+                              )}20`,
+                              color: getLeaveTypeColor(request.leaveType),
+                              borderRadius: "12px",
+                              fontSize: "0.75rem",
+                              fontWeight: 500,
+                              height: "24px",
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="body2">
+                            {request.leaveFrom}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography variant="body2">
+                            {request.leaveTo}
+                          </Typography>
+                        </TableCell>
+                        <TableCell sx={{ textAlign: "center" }}>
+                          <Typography variant="body2">
+                            {request.days}
+                          </Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Chip
+                            label={request.status}
+                            size="small"
+                            sx={{
+                              backgroundColor: statusColor.bg,
+                              color: statusColor.text,
+                              borderRadius: "12px",
+                              fontSize: "0.75rem",
+                              fontWeight: 500,
+                              height: "24px",
+                            }}
+                          />
+                        </TableCell>
+                        <TableCell>
+                          <Box sx={{ display: "flex", gap: 1 }}>
+                            {request.status === "Pending" ? (
+                              <Box
                                 sx={{
-                                  fontSize: "0.75rem",
-                                  textTransform: "none",
-                                  color: "#00b894",
-                                  borderColor: "#00b89440",
-                                  backgroundColor: "transparent",
-                                  borderRadius: "6px",
-                                  py: 0.5,
-                                  minWidth: "60px",
-                                  "&:hover": {
-                                    backgroundColor: "#00b8941a",
-                                    borderColor: "#00b89460",
-                                  },
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                  width: "100%",
+                                  gap: 1,
                                 }}
                               >
-                                Approve
-                              </Button>
-                              <Button
-                                size="small"
-                                variant="outlined"
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  sx={{
+                                    fontSize: "0.75rem",
+                                    textTransform: "none",
+                                    color: "#00b894",
+                                    borderColor: "#00b89440",
+                                    backgroundColor: "transparent",
+                                    borderRadius: "6px",
+                                    py: 0.5,
+                                    minWidth: "60px",
+                                    "&:hover": {
+                                      backgroundColor: "#00b8941a",
+                                      borderColor: "#00b89460",
+                                    },
+                                  }}
+                                >
+                                  Approve
+                                </Button>
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  sx={{
+                                    fontSize: "0.75rem",
+                                    textTransform: "none",
+                                    color: "#ff6b81",
+                                    borderColor: "#ff6b8140",
+                                    backgroundColor: "transparent",
+                                    borderRadius: "6px",
+                                    py: 0.5,
+                                    minWidth: "60px",
+                                    "&:hover": {
+                                      backgroundColor: "#ff6b811a",
+                                      borderColor: "#ff6b8160",
+                                    },
+                                  }}
+                                >
+                                  Reject
+                                </Button>
+                              </Box>
+                            ) : (
+                              <Box
                                 sx={{
-                                  fontSize: "0.75rem",
-                                  textTransform: "none",
-                                  color: "#ff6b81",
-                                  borderColor: "#ff6b8140",
-                                  backgroundColor: "transparent",
-                                  borderRadius: "6px",
-                                  py: 0.5,
-                                  minWidth: "60px",
-                                  "&:hover": {
-                                    backgroundColor: "#ff6b811a",
-                                    borderColor: "#ff6b8160",
-                                  },
+                                  display: "flex",
+                                  justifyContent: "flex-end",
+                                  width: "100%",
                                 }}
                               >
-                                Reject
-                              </Button>
-                            </Box>
-                          ) : (
-                            <Box
-                              sx={{
-                                display: "flex",
-                                justifyContent: "flex-end",
-                                width: "100%",
-                              }}
-                            >
-                              <Button
-                                size="small"
-                                variant="outlined"
-                                sx={{
-                                  fontSize: "0.75rem",
-                                  textTransform: "none",
-                                  color: "#757575",
-                                  borderColor: "#75757540",
-                                  backgroundColor: "transparent",
-                                  borderRadius: "6px",
-                                  py: 0.5,
-                                  minWidth: "60px",
-                                  "&:hover": {
-                                    backgroundColor: "#7575751a",
-                                    borderColor: "#75757560",
-                                  },
-                                }}
-                              >
-                                Edit
-                              </Button>
-                            </Box>
-                          )}
-                        </Box>
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                                <Button
+                                  size="small"
+                                  variant="outlined"
+                                  sx={{
+                                    fontSize: "0.75rem",
+                                    textTransform: "none",
+                                    color: "#757575",
+                                    borderColor: "#75757540",
+                                    backgroundColor: "transparent",
+                                    borderRadius: "6px",
+                                    py: 0.5,
+                                    minWidth: "60px",
+                                    "&:hover": {
+                                      backgroundColor: "#7575751a",
+                                      borderColor: "#75757560",
+                                    },
+                                  }}
+                                >
+                                  Edit
+                                </Button>
+                              </Box>
+                            )}
+                          </Box>
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
 
           {/* Pagination and info */}
           <Box
             sx={{
               display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
               justifyContent: "space-between",
-              alignItems: "center",
-              px: 2,
+              alignItems: { xs: "stretch", sm: "center" },
+              gap: { xs: 2, sm: 0 },
+              px: { xs: 1, sm: 2 },
               mt: 2,
               pb: 1,
             }}
           >
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ textAlign: { xs: "center", sm: "left" } }}
+            >
               Showing {leaveRequestStartIndex + 1} to {leaveRequestEndIndex} of{" "}
               {totalLeaveRequests} leave requests
             </Typography>
 
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: { xs: "center", sm: "flex-end" },
+                width: "100%",
+              }}
+            >
               <Button
                 variant="text"
                 disabled={leaveRequestPage === 1}
@@ -997,6 +1081,7 @@ export default function EmployeePage() {
                   border: "1px solid",
                   borderColor: "divider",
                   borderRadius: "8px",
+                  display: { xs: "none", sm: "inline-flex" },
                 }}
               >
                 Previous
@@ -1010,6 +1095,11 @@ export default function EmployeePage() {
                 shape="rounded"
                 hidePrevButton
                 hideNextButton
+                sx={{
+                  "& .MuiPaginationItem-root": {
+                    fontSize: { xs: "0.75rem", sm: "0.875rem" },
+                  },
+                }}
               />
               <Button
                 variant="text"
@@ -1027,6 +1117,7 @@ export default function EmployeePage() {
                   border: "1px solid",
                   borderColor: "divider",
                   borderRadius: "8px",
+                  display: { xs: "none", sm: "inline-flex" },
                 }}
               >
                 Next
@@ -1034,7 +1125,7 @@ export default function EmployeePage() {
             </Box>
           </Box>
         </TabPanel>
-          </Paper>
+      </Paper>
     </Box>
   );
 }

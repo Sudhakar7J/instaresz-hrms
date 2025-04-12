@@ -59,30 +59,38 @@ export default function RecruitmentPage() {
   );
 
   return (
-    <Box sx={{ p: 2 }}>
+    <Box sx={{ p: { xs: 1.5, sm: 2 } }}>
       {/* Header section with icon, title and buttons */}
       <Box
         sx={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: { xs: "column", sm: "row" },
+          alignItems: { xs: "flex-start", sm: "center" },
           justifyContent: "space-between",
+          gap: { xs: 2, sm: 0 },
           mb: 3,
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center" }}>
           <Avatar
             sx={{
-              width: 40,
-              height: 40,
+              width: { xs: 32, sm: 40 },
+              height: { xs: 32, sm: 40 },
               bgcolor: "#eef2ff",
               color: "#5271ff",
               mr: 2,
             }}
           >
-            <WorkOutlineIcon />
+            <WorkOutlineIcon sx={{ fontSize: { xs: 18, sm: 24 } }} />
           </Avatar>
           <Box>
-            <Typography variant="h5" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 600,
+                fontSize: { xs: "1.125rem", sm: "1.5rem" },
+              }}
+            >
               Recruitment
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -91,8 +99,12 @@ export default function RecruitmentPage() {
           </Box>
         </Box>
 
-        <Box sx={{ display: "flex", gap: 1 }}>
-          <FormControl sx={{ minWidth: 140 }}>
+        <Box
+          sx={{ display: "flex", gap: 1, width: { xs: "100%", sm: "auto" } }}
+        >
+          <FormControl
+            sx={{ minWidth: { xs: 0, sm: 140 }, flex: { xs: 1, sm: "none" } }}
+          >
             <Select
               value={jobFilter}
               onChange={handleFilterChange}
@@ -117,6 +129,7 @@ export default function RecruitmentPage() {
               textTransform: "none",
               borderRadius: "8px",
               fontWeight: 500,
+              flex: { xs: 1, sm: "none" },
             }}
           >
             Create New Job
@@ -125,14 +138,14 @@ export default function RecruitmentPage() {
       </Box>
 
       {/* Job Listings Grid */}
-      <Grid container spacing={2.5}>
+      <Grid container spacing={{ xs: 2, sm: 2.5 }}>
         {filteredJobs.map((job) => (
           <Grid item xs={12} sm={6} md={4} key={job.id}>
             <Card
               onClick={() => handleJobClick(job.id)}
               sx={{
                 height: "100%",
-                borderRadius: "16px",
+                borderRadius: { xs: "12px", sm: "16px" },
                 boxShadow: "0 1px 5px rgba(0,0,0,0.03)",
                 transition: "transform 0.2s, box-shadow 0.2s",
                 border: "1px solid #f0f0f0",
@@ -159,7 +172,7 @@ export default function RecruitmentPage() {
                     : {},
               }}
             >
-              <CardContent sx={{ p: 3 }}>
+              <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
                 <Box
                   sx={{
                     mb: 1.5,
@@ -183,7 +196,11 @@ export default function RecruitmentPage() {
                 </Box>
                 <Typography
                   variant="h6"
-                  sx={{ fontWeight: 600, fontSize: "1.1rem", mb: 1.2 }}
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: { xs: "1rem", sm: "1.1rem" },
+                    mb: 1.2,
+                  }}
                 >
                   {job.title}
                 </Typography>
@@ -193,7 +210,7 @@ export default function RecruitmentPage() {
                   sx={{
                     mb: 2.5,
                     lineHeight: 1.4,
-                    fontSize: "0.825rem",
+                    fontSize: { xs: "0.8rem", sm: "0.825rem" },
                   }}
                 >
                   {job.description}

@@ -173,13 +173,16 @@ export default function JobDetailsPage() {
             value={tabValue}
             onChange={handleTabChange}
             aria-label="job details tabs"
+            variant="scrollable"
+            scrollButtons="auto"
             sx={{
-              px: 2,
+              px: { xs: 1, sm: 2 },
               "& .MuiTab-root": {
                 textTransform: "none",
-                fontSize: "0.9rem",
+                fontSize: { xs: "0.8rem", sm: "0.9rem" },
                 fontWeight: 500,
                 py: 1.5,
+                minWidth: { xs: 100, sm: "auto" },
               },
               "& .Mui-selected": {
                 color: "#5271ff",
@@ -238,9 +241,17 @@ export default function JobDetailsPage() {
 
         {/* Job Description Tab Panel */}
         <TabPanel value={tabValue} index={0}>
-          <Box sx={{ display: "flex" }}>
-            {/* Main content - 70% */}
-            <Box sx={{ width: "70%", px: 3, pb: 3 }}>
+          <Box
+            sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+          >
+            {/* Main content - 70% on md+, 100% on xs */}
+            <Box
+              sx={{
+                width: { xs: "100%", md: "70%" },
+                px: { xs: 2, sm: 3 },
+                pb: 3,
+              }}
+            >
               <Box
                 sx={{
                   display: "flex",
@@ -359,14 +370,16 @@ export default function JobDetailsPage() {
               </Box>
             </Box>
 
-            {/* Right sidebar - 30% */}
+            {/* Right sidebar - 30% on md+, hidden on xs */}
             <Box
               sx={{
-                width: "25%",
+                width: { xs: "100%", md: "25%" },
                 bgcolor: "#fafafa",
                 p: 2,
-                borderRadius: "0 0 8px 0",
+                borderRadius: { xs: "0", md: "0 0 8px 0" },
                 height: "fit-content",
+                display: { xs: "none", md: "block" },
+                borderLeft: { xs: "none", md: "1px solid #eee" },
               }}
             >
               <Box sx={{ mb: 3 }}>
@@ -428,12 +441,19 @@ export default function JobDetailsPage() {
               <Typography variant="h6" fontWeight={600}>
                 Candidates
               </Typography>
-              <Box sx={{ display: "flex", gap: 2 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 2,
+                  flexDirection: { xs: "column", sm: "row" },
+                  alignItems: { xs: "stretch", sm: "center" },
+                }}
+              >
                 <TextField
                   placeholder="Search name or email here..."
                   size="small"
                   sx={{
-                    width: 240,
+                    width: { xs: "100%", sm: 240 },
                     "& .MuiOutlinedInput-root": {
                       borderRadius: "8px",
                       fontSize: "0.875rem",
@@ -472,8 +492,14 @@ export default function JobDetailsPage() {
 
             {jobCandidates.length > 0 ? (
               <>
-                {/* Status labels row - horizontal stripe */}
-                <Box sx={{ display: "flex", width: "100%", mb: 3 }}>
+                {/* Status labels row - horizontal stripe - hidden on small screens */}
+                <Box
+                  sx={{
+                    display: { xs: "none", sm: "flex" },
+                    width: "100%",
+                    mb: 3,
+                  }}
+                >
                   {Object.entries(groupCandidatesByStatus(jobCandidates)).map(
                     ([status, candidates]) => {
                       const statusColor = getStatusColor(status);
@@ -523,20 +549,68 @@ export default function JobDetailsPage() {
                   )}
                 </Box>
 
-                {/* Content section - full width columns */}
-                <Box sx={{ display: "flex", width: "100%", gap: 2 }}>
+                {/* Content section - full width columns on sm+, stacked on xs */}
+                <Box
+                  sx={{
+                    display: "flex",
+                    width: "100%",
+                    gap: 2,
+                    flexDirection: { xs: "column", sm: "row" },
+                  }}
+                >
                   {Object.entries(groupCandidatesByStatus(jobCandidates)).map(
                     ([status, candidates]) => {
+                      const statusColor = getStatusColor(status);
                       return (
                         <Box
                           key={status}
                           sx={{
-                            flex: 1,
+                            flex: { sm: 1 },
                             display: "flex",
                             flexDirection: "column",
                             gap: 2,
+                            mb: { xs: 3, sm: 0 },
                           }}
                         >
+                          {/* Status Header for mobile */}
+                          <Box
+                            sx={{ display: { xs: "block", sm: "none" }, mb: 1 }}
+                          >
+                            <Typography
+                              variant="body2"
+                              fontWeight={600}
+                              sx={{
+                                fontSize: "0.8rem",
+                                textTransform: "uppercase",
+                                color: statusColor.text,
+                                p: 1,
+                                bgcolor: statusColor.bg,
+                                borderRadius: "6px",
+                                textAlign: "center",
+                                position: "relative",
+                              }}
+                            >
+                              {status}
+                              <Box
+                                sx={{
+                                  position: "absolute",
+                                  right: 8,
+                                  top: "50%",
+                                  transform: "translateY(-50%)",
+                                  bgcolor: "rgba(255,255,255,0.7)",
+                                  px: 1,
+                                  py: 0.25,
+                                  borderRadius: "4px",
+                                  fontSize: "0.75rem",
+                                  fontWeight: 600,
+                                }}
+                              >
+                                {candidates.length}
+                              </Box>
+                            </Typography>
+                          </Box>
+
+                          {/* Candidate Cards */}
                           <Box
                             sx={{
                               display: "flex",
@@ -664,6 +738,7 @@ export default function JobDetailsPage() {
                                   justifyContent: "center",
                                   color: "#9ca3af",
                                   fontSize: "0.8rem",
+                                  minHeight: 80,
                                 }}
                               >
                                 No candidates
@@ -724,7 +799,7 @@ export default function JobDetailsPage() {
         </TabPanel>
       </Paper>
 
-      {/* Mobile version of sidebar - only shown on small screens */}
+      {/* Mobile version of sidebar - only shown on small screens (md down) */}
       <Box
         sx={{
           mt: 3,

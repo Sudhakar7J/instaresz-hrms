@@ -144,7 +144,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         p: { xs: 1, sm: 2 },
       }}
     >
-      {/* Left sidebar */}
+      {/* Left sidebar - Only displayed on larger screens */}
       <Paper
         sx={{
           width: { md: sidebarCollapsed ? 80 : 300 },
@@ -494,10 +494,106 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </Box>
       </Paper>
 
+      {/* Mobile top header with logo and company name - Only shown on mobile */}
+      <Box
+        sx={{
+          display: { xs: "flex", md: "none" },
+          alignItems: "center",
+          p: 1.5,
+          mb: 1,
+        }}
+      >
+        <Avatar
+          sx={{
+            width: 32,
+            height: 32,
+            bgcolor: "#5271ff",
+            borderRadius: "8px",
+            mr: 1.5,
+          }}
+        >
+          <Box
+            component="span"
+            sx={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+          >
+            B
+          </Box>
+        </Avatar>
+        <Typography variant="subtitle1" fontWeight="600">
+          BordUp
+          <Box component="sup" sx={{ fontSize: "0.6rem" }}>
+            TM
+          </Box>
+        </Typography>
+      </Box>
+
       {/* Main content */}
-      <Box sx={{ flexGrow: 1, width: "100%", overflow: "auto" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          width: "100%",
+          overflow: "auto",
+          pb: { xs: 7, md: 0 }, // Add bottom padding on mobile to account for mobile navigation
+        }}
+      >
         {children}
       </Box>
+
+      {/* Mobile Bottom Navigation - Only visible on mobile */}
+      <Paper
+        sx={{
+          position: "fixed",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          zIndex: 1100,
+          display: { xs: "flex", md: "none" },
+          justifyContent: "space-around",
+          alignItems: "center",
+          py: 1,
+          borderRadius: 0,
+          boxShadow: "0 -2px 10px rgba(0,0,0,0.05)",
+        }}
+        elevation={3}
+      >
+        {mainMenuItems.map((item, index) => (
+          <Link
+            href={item.path}
+            key={index}
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                p: 0.5,
+                color: item.active ? "#5271ff" : "#757575",
+              }}
+            >
+              <Box
+                sx={{
+                  color: item.active ? "#5271ff" : "#757575",
+                  fontSize: 20,
+                }}
+              >
+                {item.icon}
+              </Box>
+              <Typography
+                variant="caption"
+                sx={{
+                  fontSize: "0.65rem",
+                  mt: 0.3,
+                  fontWeight: item.active ? 500 : 400,
+                }}
+              >
+                {item.title}
+              </Typography>
+            </Box>
+          </Link>
+        ))}
+      </Paper>
     </Box>
   );
 }

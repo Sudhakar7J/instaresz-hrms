@@ -104,16 +104,22 @@ export default function PayrollPage() {
   };
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: { xs: 1.5, sm: 3 } }}>
       <Box
         sx={{
           display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: { xs: "flex-start", sm: "center" },
+          gap: { xs: 2, sm: 0 },
           mb: 3,
         }}
       >
-        <Typography variant="h4" fontWeight={600}>
+        <Typography
+          variant="h4"
+          fontWeight={600}
+          sx={{ fontSize: { xs: "1.5rem", sm: "2rem" } }}
+        >
           Payroll
         </Typography>
         <Button
@@ -124,6 +130,7 @@ export default function PayrollPage() {
             fontWeight: 500,
             textTransform: "none",
             borderRadius: 2,
+            width: { xs: "100%", sm: "auto" },
             "&:hover": {
               bgcolor: "#3a57e8",
             },
@@ -149,12 +156,19 @@ export default function PayrollPage() {
           onChange={handleFilterChange}
           aria-label="employee filter"
           sx={{
+            width: "100%",
+            overflowX: "auto",
+            ".MuiToggleButtonGroup-grouped": {
+              flex: { xs: 1, sm: "none" },
+              minWidth: { xs: 120, sm: "auto" },
+            },
             "& .MuiToggleButton-root": {
               textTransform: "none",
               borderColor: "#e5e7eb",
               color: "#6b7280",
-              px: 3,
+              px: { xs: 1, sm: 3 },
               py: 1,
+              fontSize: { xs: "0.8125rem", sm: "0.875rem" },
               "&.Mui-selected": {
                 bgcolor: "#f3f4f6",
                 color: "#111827",
@@ -205,133 +219,144 @@ export default function PayrollPage() {
           boxShadow: "0 1px 3px rgba(0,0,0,0.1)",
         }}
       >
-        <TableContainer>
-          <Table sx={{ minWidth: 650 }}>
-            <TableHead>
-              <TableRow sx={{ bgcolor: "#f9fafb" }}>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Name
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Pay period
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Gross pay
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Deductions
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Net pay
-                </TableCell>
-                <TableCell
-                  sx={{
-                    fontWeight: 500,
-                    color: "#4b5563",
-                    fontSize: "0.875rem",
-                  }}
-                >
-                  Status
-                </TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {filteredRecords
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((record) => {
-                  const statusProps = getStatusChipProps();
-                  return (
-                    <TableRow
-                      key={record.id}
-                      hover
-                      sx={{
-                        "&:hover": { bgcolor: "#f9fafb" },
-                        "&:last-child td, &:last-child th": { border: 0 },
-                      }}
-                    >
-                      <TableCell sx={{ fontSize: "0.875rem" }}>
-                        {record.employeeName}
-                      </TableCell>
-                      <TableCell sx={{ fontSize: "0.875rem" }}>
-                        {record.payPeriod}
-                      </TableCell>
-                      <TableCell sx={{ fontSize: "0.875rem" }}>
-                        {formatCurrency(record.grossPay)}
-                      </TableCell>
-                      <TableCell sx={{ fontSize: "0.875rem" }}>
-                        {formatCurrency(record.deductions)}
-                      </TableCell>
-                      <TableCell sx={{ fontSize: "0.875rem", fontWeight: 500 }}>
-                        {formatCurrency(record.netPay)}
-                      </TableCell>
-                      <TableCell>
-                        <Chip
-                          label={record.status}
-                          size="small"
-                          sx={{
-                            bgcolor: statusProps.bgcolor,
-                            color: statusProps.color,
-                            fontSize: "0.75rem",
-                            fontWeight: 500,
-                            borderRadius: "12px",
-                          }}
-                        />
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              {filteredRecords.length === 0 && (
-                <TableRow>
-                  <TableCell colSpan={6} align="center" sx={{ py: 3 }}>
-                    <Typography color="text.secondary" variant="body2">
-                      No payroll records found
-                    </Typography>
+        <Box sx={{ overflowX: "auto" }}>
+          <TableContainer>
+            <Table sx={{ minWidth: 650 }}>
+              <TableHead>
+                <TableRow sx={{ bgcolor: "#f9fafb" }}>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Name
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Pay period
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Gross pay
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Deductions
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Net pay
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      fontWeight: 500,
+                      color: "#4b5563",
+                      fontSize: "0.875rem",
+                    }}
+                  >
+                    Status
                   </TableCell>
                 </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </TableContainer>
+              </TableHead>
+              <TableBody>
+                {filteredRecords
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((record) => {
+                    const statusProps = getStatusChipProps();
+                    return (
+                      <TableRow
+                        key={record.id}
+                        hover
+                        sx={{
+                          "&:hover": { bgcolor: "#f9fafb" },
+                          "&:last-child td, &:last-child th": { border: 0 },
+                        }}
+                      >
+                        <TableCell sx={{ fontSize: "0.875rem" }}>
+                          {record.employeeName}
+                        </TableCell>
+                        <TableCell sx={{ fontSize: "0.875rem" }}>
+                          {record.payPeriod}
+                        </TableCell>
+                        <TableCell sx={{ fontSize: "0.875rem" }}>
+                          {formatCurrency(record.grossPay)}
+                        </TableCell>
+                        <TableCell sx={{ fontSize: "0.875rem" }}>
+                          {formatCurrency(record.deductions)}
+                        </TableCell>
+                        <TableCell
+                          sx={{ fontSize: "0.875rem", fontWeight: 500 }}
+                        >
+                          {formatCurrency(record.netPay)}
+                        </TableCell>
+                        <TableCell>
+                          <Chip
+                            label={record.status}
+                            size="small"
+                            sx={{
+                              bgcolor: statusProps.bgcolor,
+                              color: statusProps.color,
+                              fontSize: "0.75rem",
+                              fontWeight: 500,
+                              borderRadius: "12px",
+                            }}
+                          />
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {filteredRecords.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={6} align="center" sx={{ py: 3 }}>
+                      <Typography color="text.secondary" variant="body2">
+                        No payroll records found
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Box>
         <Box
           sx={{
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            p: 2,
+            p: { xs: 1.5, sm: 2 },
             borderTop: "1px solid #e5e7eb",
           }}
         >
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "row" },
+              alignItems: "center",
+              gap: 1,
+            }}
+          >
             <Button
               disabled={page === 0}
               onClick={() => handleChangePage(null, page - 1)}
