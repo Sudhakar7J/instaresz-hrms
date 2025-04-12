@@ -370,3 +370,244 @@ export const leaveApplications: LeaveApplication[] = [
     toDate: "Feb 22, 2024",
   },
 ];
+
+// Job Listing interface
+export interface JobListing {
+  id: string;
+  title: string;
+  description: string;
+  department: string;
+  jobType: "Full Time" | "Part Time";
+  workMode: "Remote" | "Onsite" | "Hybrid";
+  activeUntil: string;
+  status: "Active" | "Closed";
+  location?: string;
+  detailedDescription?: {
+    aboutCompany?: string;
+    responsibilities?: string[];
+    requirements?: string[];
+  };
+}
+
+// Job listings data
+export const jobListings: JobListing[] = [
+  {
+    id: "1",
+    title: "UI/UX Designer",
+    description:
+      "Gathering and evaluating user requirements, in collaboration with product managers and engineers",
+    department: "Design",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+    location: "Onsite Indonesia, Jakarta",
+    detailedDescription: {
+      aboutCompany:
+        "We craft digital products for business and user goals. Help find solutions with UI / UX designs that are intuitive and in accordance with client business goals. We provide a high-quality service in UI/ UX Design & Development. We craft digital products for businesses in achieving user goals by providing intuitive solutions. We have worked with a vast number clients who have different backgrounds such as construction, insurance, health, marketing, cryptocurrency, stocks, games, startup, real estate and many others.",
+      responsibilities: [
+        "Work as a User Interface Designer for our B2B SaaS product along with stakeholders",
+        "Translate client briefs into a clear, user-friendly interface design and interactions. Develop both low and high-fidelity mockups.",
+        "Testing out design assumptions and usability level of your design. Validate your design decisions through user feedback, iterate your designs based on that feedback, and meticulously document the process.",
+        "Work closely with a team of project managers, client stakeholders, researchers, and content designers.",
+        "Conduct user research and evaluate user feedback",
+      ],
+      requirements: [
+        "A mid level product designer with min. 3 years of experience.",
+        "A designer with a strong UX and UI portfolio that demonstrates problem-solving skills, design methods, and craftsmanship.",
+        "An organized designer that always documents their works, Figma files, and research reports.",
+        "Comfortable with fast-paced work environments, context switching, and excited to drive the projects forwards.",
+        "Able to explain your design process, outcome, and decisions that you've made.",
+      ],
+    },
+  },
+  {
+    id: "2",
+    title: "Junior Frontend Developer",
+    description:
+      "Assist in developing and maintaining web applications. Must have a basic understanding in creating user interfaces for applications.",
+    department: "Development",
+    jobType: "Full Time",
+    workMode: "Remote",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "3",
+    title: "Motion Graphic Designer",
+    description:
+      "We are looking for a Motion Graphic Designer to animate static designs and create visual effects that will work nicely with the marketing team, video production.",
+    department: "Design",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "4",
+    title: "SEO Specialist",
+    description:
+      "Looking for an SEO specialist to optimize our website to ensure the site is accessible and easy to follow and for increased marketing reach.",
+    department: "Business and Marketing",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "5",
+    title: "Project Assistant Manager",
+    description:
+      "Ensure that the project complies with the schedule, rules and regulations. Manage and coordinate with the entire team.",
+    department: "Project Manager",
+    jobType: "Full Time",
+    workMode: "Remote",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "6",
+    title: "Intern Graphic Design",
+    description:
+      "Design illustrations, logos or other designs using software or by hand. Work with copywriters and creative director using the company brand assets.",
+    department: "Design",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "7",
+    title: "3D Animation (Junior-Middle)",
+    description:
+      "Using 3D modeling, texturing, mapping, and other techniques to create graphics, visual effect and animation.",
+    department: "Design",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "8",
+    title: "Senior Web Developer",
+    description:
+      "Able to communicate well and collaborate with other dev teams. Have strong skills in problem solving and debugging.",
+    department: "Development",
+    jobType: "Full Time",
+    workMode: "Remote",
+    activeUntil: "Jan 31, 2024",
+    status: "Active",
+  },
+  {
+    id: "9",
+    title: "Marketing Specialist",
+    description:
+      "Develop marketing campaigns, create content for various channels, and analyze marketing metrics to optimize campaign performance.",
+    department: "Business and Marketing",
+    jobType: "Full Time",
+    workMode: "Hybrid",
+    activeUntil: "Dec 15, 2023",
+    status: "Closed",
+  },
+  {
+    id: "10",
+    title: "Backend Developer",
+    description:
+      "Design and implement server-side applications using Node.js and Express. Experience with MongoDB and REST API development required.",
+    department: "Development",
+    jobType: "Full Time",
+    workMode: "Remote",
+    activeUntil: "Dec 20, 2023",
+    status: "Closed",
+  },
+  {
+    id: "11",
+    title: "Product Manager",
+    description:
+      "Lead product development from conception to launch. Collaborate with design, engineering, and marketing teams to create user-centered products.",
+    department: "Project Manager",
+    jobType: "Full Time",
+    workMode: "Onsite",
+    activeUntil: "Dec 31, 2023",
+    status: "Closed",
+  },
+  {
+    id: "12",
+    title: "Data Analyst",
+    description:
+      "Analyze large datasets to extract meaningful insights. Create reports and visualizations to communicate findings to stakeholders.",
+    department: "Business and Marketing",
+    jobType: "Part Time",
+    workMode: "Remote",
+    activeUntil: "Jan 05, 2024",
+    status: "Closed",
+  },
+];
+
+// Candidate interface
+export interface Candidate {
+  id: string;
+  jobId: string;
+  name: string;
+  email: string;
+  avatar: string;
+  status: "Sourced" | "In Progress" | "Interview" | "Hired" | "Rejected";
+  appliedDate: string;
+  resume?: string;
+  coverLetter?: string;
+}
+
+// Candidates data
+export const candidates: Candidate[] = [
+  {
+    id: "1",
+    jobId: "1", // UI/UX Designer
+    name: "Emily Johnson",
+    email: "emily.johnson@example.com",
+    avatar: "/avatars/emily.jpg",
+    status: "Interview",
+    appliedDate: "Jan 15, 2024",
+    resume: "Resume-Emily-Johnson.pdf",
+  },
+  {
+    id: "2",
+    jobId: "1", // UI/UX Designer
+    name: "Michael Chen",
+    email: "michael.chen@example.com",
+    avatar: "/avatars/michael.jpg",
+    status: "In Progress",
+    appliedDate: "Jan 17, 2024",
+    resume: "Resume-Michael-Chen.pdf",
+    coverLetter: "Cover-Letter-Michael-Chen.pdf",
+  },
+  {
+    id: "3",
+    jobId: "1", // UI/UX Designer
+    name: "Sophia Rodriguez",
+    email: "sophia.r@example.com",
+    avatar: "/avatars/sophia.jpg",
+    status: "Sourced",
+    appliedDate: "Jan 20, 2024",
+  },
+  {
+    id: "4",
+    jobId: "2", // Junior Frontend Developer
+    name: "David Kim",
+    email: "david.kim@example.com",
+    avatar: "/avatars/david.jpg",
+    status: "In Progress",
+    appliedDate: "Jan 18, 2024",
+    resume: "Resume-David-Kim.pdf",
+  },
+  {
+    id: "5",
+    jobId: "2", // Junior Frontend Developer
+    name: "Emma Wilson",
+    email: "emma.w@example.com",
+    avatar: "/avatars/emma.jpg",
+    status: "Hired",
+    appliedDate: "Jan 10, 2024",
+    resume: "Resume-Emma-Wilson.pdf",
+    coverLetter: "Cover-Letter-Emma-Wilson.pdf",
+  },
+];
