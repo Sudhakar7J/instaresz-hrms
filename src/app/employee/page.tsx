@@ -30,6 +30,11 @@ import AccessTimeOutlinedIcon from "@mui/icons-material/AccessTimeOutlined";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { employeeDetails } from "../data/mockData";
 import { useState } from "react";
+import OrgChartComponent from "../components/OrgChart/OrgChartComponent";
+import {
+  orgChartData,
+  departmentColors,
+} from "../components/OrgChart/mockOrgData";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -698,9 +703,18 @@ export default function EmployeePage() {
             <Typography variant="h6" fontWeight={500} gutterBottom>
               Organization Chart
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              This feature is under development.
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
+              Complete organizational structure showing departments and
+              reporting lines.
             </Typography>
+            <Box
+              sx={{ mt: 3, height: "calc(100vh - 300px)", minHeight: "500px" }}
+            >
+              <OrgChartComponent
+                data={orgChartData}
+                departmentColors={departmentColors}
+              />
+            </Box>
           </Box>
         </TabPanel>
 

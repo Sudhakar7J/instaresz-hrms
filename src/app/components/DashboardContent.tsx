@@ -12,6 +12,7 @@ import LeaveApplication from "./LeaveApplication";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InsertDriveFileOutlinedIcon from "@mui/icons-material/InsertDriveFileOutlined";
 import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
+import { useRouter } from "next/navigation";
 
 import {
   paymentData,
@@ -25,6 +26,8 @@ import {
 } from "../data/mockData";
 
 export default function DashboardContent() {
+  const router = useRouter();
+
   // Find employee for leave application by ID
   const leaveEmployee = employeeData.find(
     (emp) => emp.id === leaveApplications[0].employeeId
@@ -59,7 +62,12 @@ export default function DashboardContent() {
 
         {/* Developer card */}
         <Grid item xs={12} md={4}>
-          <EmployeeDetails />
+          <Box
+            onClick={() => router.push("/recruitment")}
+            sx={{ cursor: "pointer" }}
+          >
+            <EmployeeDetails />
+          </Box>
         </Grid>
       </Grid>
 

@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useRouter } from "next/navigation";
 import {
   Event,
   jan28Schedule,
@@ -32,6 +33,7 @@ interface TodayScheduleProps {
 export default function TodaySchedule({ date }: TodayScheduleProps) {
   const [selectedDate, setSelectedDate] = useState(date);
   const theme = useTheme();
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -158,12 +160,19 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
 
   return (
     <Card
+      onClick={() => router.push("/schedule")}
       sx={{
         mb: 2,
         borderRadius: "12px",
         boxShadow: "0 2px 10px rgba(0,0,0,0.07)",
         height: "100%",
         overflow: "hidden",
+        cursor: "pointer",
+        transition: "transform 0.2s, box-shadow 0.2s",
+        "&:hover": {
+          transform: "translateY(-2px)",
+          boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+        },
       }}
     >
       <Box
@@ -177,6 +186,7 @@ export default function TodaySchedule({ date }: TodayScheduleProps) {
           gap: isMobile ? 1 : 0,
           borderBottom: "1px solid rgba(0,0,0,0.04)",
         }}
+        onClick={(e) => e.stopPropagation()}
       >
         <Typography variant="subtitle1" fontWeight="600" color="#424242">
           Today Schedule

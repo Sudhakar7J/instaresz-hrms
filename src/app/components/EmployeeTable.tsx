@@ -18,6 +18,7 @@ import {
   Stack,
 } from "@mui/material";
 import { Employee } from "../data/mockData";
+import { useRouter } from "next/navigation";
 
 interface EmployeeTableProps {
   employees: Employee[];
@@ -25,6 +26,7 @@ interface EmployeeTableProps {
 
 export default function EmployeeTable({ employees }: EmployeeTableProps) {
   const theme = useTheme();
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   // Function to get department color
@@ -162,6 +164,7 @@ export default function EmployeeTable({ employees }: EmployeeTableProps) {
           variant="outlined"
           color="primary"
           size="small"
+          onClick={() => router.push("/employee")}
           sx={{
             textTransform: "none",
             fontSize: "0.75rem",

@@ -8,6 +8,8 @@ import {
   Avatar,
   Tooltip,
   IconButton,
+  InputBase,
+  Badge,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
@@ -21,6 +23,9 @@ import AddIcon from "@mui/icons-material/Add";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import ShareIcon from "@mui/icons-material/Share";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -148,16 +153,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <Paper
         sx={{
           width: { md: sidebarCollapsed ? 80 : 300 },
-          borderRadius: 2,
+          borderRadius: { xs: 2, md: 0 },
           display: { xs: "none", md: "block" },
-          mr: { md: 2 },
+          mr: { md: 0 },
           mb: { xs: 2, md: 0 },
           boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
           p: 2,
           transition: "width 0.3s ease",
           overflow: "hidden",
           position: "relative",
-          height: "calc(100vh - 32px)", // Account for padding
+          height: "calc(100vh - 0px)",
         }}
       >
         {/* Logo and collapse button */}
@@ -494,49 +499,116 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         </Box>
       </Paper>
 
-      {/* Mobile top header with logo and company name - Only shown on mobile */}
-      <Box
-        sx={{
-          display: { xs: "flex", md: "none" },
-          alignItems: "center",
-          p: 1.5,
-          mb: 1,
-        }}
-      >
-        <Avatar
-          sx={{
-            width: 32,
-            height: 32,
-            bgcolor: "#5271ff",
-            borderRadius: "8px",
-            mr: 1.5,
-          }}
-        >
-          <Box
-            component="span"
-            sx={{ fontSize: 18, fontWeight: "bold", color: "white" }}
-          >
-            B
-          </Box>
-        </Avatar>
-        <Typography variant="subtitle1" fontWeight="600">
-          BordUp
-          <Box component="sup" sx={{ fontSize: "0.6rem" }}>
-            TM
-          </Box>
-        </Typography>
-      </Box>
-
-      {/* Main content */}
+      {/* Main content area with header */}
       <Box
         sx={{
           flexGrow: 1,
           width: "100%",
           overflow: "auto",
-          pb: { xs: 7, md: 0 }, // Add bottom padding on mobile to account for mobile navigation
+          pb: { xs: 7, md: 0 },
+          pl: { xs: 0, md: 0 },
         }}
       >
-        {children}
+        {/* Header with search, notification and share buttons - shown on all screen sizes */}
+        <Paper
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            p: 1.5,
+            mb: { xs: 2, md: 0 },
+            borderRadius: { xs: 2, md: 0 },
+            boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
+            height: { md: "72px" },
+          }}
+        >
+          {/* Mobile logo - Only shown on mobile */}
+          <Box
+            sx={{
+              display: { xs: "flex", md: "none" },
+              alignItems: "center",
+              mr: 1,
+            }}
+          >
+            <Avatar
+              sx={{
+                width: 32,
+                height: 32,
+                bgcolor: "#5271ff",
+                borderRadius: "8px",
+                mr: 1.5,
+              }}
+            >
+              <Box
+                component="span"
+                sx={{ fontSize: 18, fontWeight: "bold", color: "white" }}
+              >
+                B
+              </Box>
+            </Avatar>
+            <Typography variant="subtitle1" fontWeight="600">
+              BordUp
+              <Box component="sup" sx={{ fontSize: "0.6rem" }}>
+                TM
+              </Box>
+            </Typography>
+          </Box>
+
+          {/* Search Box */}
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 8px",
+              display: "flex",
+              alignItems: "center",
+              flexGrow: 1,
+              maxWidth: { xs: "100%", sm: "100%" },
+              mr: 2,
+              border: "1px solid #eee",
+              boxShadow: "none",
+              borderRadius: 3,
+              bgcolor: "#f9f9f9",
+            }}
+          >
+            <IconButton sx={{ p: "8px", color: "#757575" }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search Keyword"
+              inputProps={{ "aria-label": "search" }}
+            />
+          </Paper>
+
+          {/* Notification and Share buttons */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <IconButton
+              size="medium"
+              sx={{
+                ml: 1,
+                color: "#757575",
+                "&:hover": { color: "#5271ff" },
+              }}
+            >
+              <Badge badgeContent={3} color="error">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>
+            <IconButton
+              size="medium"
+              sx={{
+                ml: 1,
+                color: "#757575",
+                "&:hover": { color: "#5271ff" },
+              }}
+            >
+              <ShareIcon />
+            </IconButton>
+          </Box>
+        </Paper>
+
+        {/* Main content container */}
+        <Box sx={{ p: { xs: 0, md: 2 }, pt: { md: 2 } }}>{children}</Box>
       </Box>
 
       {/* Mobile Bottom Navigation - Only visible on mobile */}

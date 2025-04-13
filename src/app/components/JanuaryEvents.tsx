@@ -8,8 +8,6 @@ import {
   List,
   Avatar,
   Divider,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import { Event } from "../data/mockData";
 import { useState } from "react";
@@ -26,8 +24,6 @@ export default function JanuaryEvents({
   birthdayEvents,
 }: JanuaryEventsProps) {
   const [activeTab, setActiveTab] = useState<TabType>("timeOff");
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const displayEvents = activeTab === "timeOff" ? events : birthdayEvents;
 
@@ -126,7 +122,7 @@ export default function JanuaryEvents({
             <Box key={event.id} sx={{ px: { xs: 1.5, sm: 2 }, py: 1 }}>
               <Box sx={{ display: "flex", width: "100%" }}>
                 <Avatar
-                  src={`/avatars/avatar${index + 1}.jpg`}
+                  src={""}
                   alt={event.title}
                   sx={{ width: 36, height: 36, mr: 1.5 }}
                 />

@@ -17,7 +17,7 @@ export interface Employee {
   id: string;
   name: string;
   email: string;
-  avatar: string;
+  avatar?: string;
   department: string;
   jobTitle: string;
   designation?: string;
@@ -46,7 +46,7 @@ export interface LeaveApplication {
 
 // Payment method data
 export const paymentData: PaymentMethod = {
-  cardholderName: "Rooks Company Ltd",
+  cardholderName: "Rocks Company Ltd",
   accountNumber: "•••• •••• •••• 6273",
   expiration: "12/28",
   type: "Debit Card",
@@ -140,7 +140,6 @@ export const employeeData: Employee[] = [
     id: "1",
     name: "Brooklyn Simmons",
     email: "brook.simmons@example.com",
-    avatar: "/avatars/brooklyn.jpg",
     department: "Design",
     jobTitle: "UI Designer",
     status: "Active",
@@ -149,7 +148,6 @@ export const employeeData: Employee[] = [
     id: "2",
     name: "Cody Fisher",
     email: "cody.fisher@example.com",
-    avatar: "/avatars/cody.jpg",
     department: "Development",
     jobTitle: "Front-End",
     status: "Active",
@@ -158,7 +156,6 @@ export const employeeData: Employee[] = [
     id: "3",
     name: "Ralph Edwards",
     email: "ralph.edwards@example.com",
-    avatar: "/avatars/ralph.jpg",
     department: "Design",
     jobTitle: "UX Designer",
     status: "Active",
@@ -182,7 +179,6 @@ export const employeeDetails: Employee[] = [
     id: "1",
     name: "Brooklyn Simmons",
     email: "brook-simms@gmail.com",
-    avatar: "/avatars/brooklyn.jpg",
     department: "Design",
     jobTitle: "Creative Director",
     attendance: "10h 30m",
@@ -194,7 +190,6 @@ export const employeeDetails: Employee[] = [
     id: "2",
     name: "Cody Fisher",
     email: "cody.fisher@example.com",
-    avatar: "/avatars/cody.jpg",
     department: "Development",
     jobTitle: "Head of Development",
     attendance: "12h 15m",
@@ -206,7 +201,6 @@ export const employeeDetails: Employee[] = [
     id: "3",
     name: "Ralph Edwards",
     email: "ralph.edwards@example.com",
-    avatar: "/avatars/ralph.jpg",
     department: "Design",
     jobTitle: "Sr. UX Designer",
     attendance: "9h 45m",
@@ -218,7 +212,6 @@ export const employeeDetails: Employee[] = [
     id: "4",
     name: "Bessie Cooper",
     email: "bessie.cooper@example.com",
-    avatar: "/avatars/bessie.jpg",
     department: "Human Resource",
     jobTitle: "Sr. HR",
     attendance: "8h 20m",
@@ -230,7 +223,7 @@ export const employeeDetails: Employee[] = [
     id: "5",
     name: "Leslie Alexander",
     email: "leslie.alexander@example.com",
-    avatar: "/avatars/leslie.jpg",
+
     department: "Human Resource",
     jobTitle: "Head of HR",
     attendance: "11h 05m",
@@ -242,7 +235,7 @@ export const employeeDetails: Employee[] = [
     id: "6",
     name: "Marjorie Jade",
     email: "marjorie.jade@example.com",
-    avatar: "/avatars/marjorie.jpg",
+
     department: "Project Manager",
     jobTitle: "Sr. Project Manager",
     attendance: "9h 35m",
@@ -254,7 +247,7 @@ export const employeeDetails: Employee[] = [
     id: "7",
     name: "James Wilson",
     email: "james_wil@example.com",
-    avatar: "/avatars/james.jpg",
+
     department: "Development",
     jobTitle: "QA Engineering",
     attendance: "10h 10m",
@@ -266,7 +259,7 @@ export const employeeDetails: Employee[] = [
     id: "8",
     name: "Anna Kimble",
     email: "anna_kim@example.com",
-    avatar: "/avatars/anna.jpg",
+
     department: "Business & Marketing",
     jobTitle: "Business Development",
     attendance: "8h 55m",
@@ -748,7 +741,7 @@ export interface Candidate {
   jobId: string;
   name: string;
   email: string;
-  avatar: string;
+  avatar?: string;
   status: "Sourced" | "In Progress" | "Interview" | "Hired" | "Rejected";
   appliedDate: string;
   resume?: string;
@@ -762,7 +755,7 @@ export const candidates: Candidate[] = [
     jobId: "1", // UI/UX Designer
     name: "Emily Johnson",
     email: "emily.johnson@example.com",
-    avatar: "/avatars/emily.jpg",
+
     status: "Interview",
     appliedDate: "Jan 15, 2024",
     resume: "Resume-Emily-Johnson.pdf",
@@ -772,7 +765,7 @@ export const candidates: Candidate[] = [
     jobId: "1", // UI/UX Designer
     name: "Michael Chen",
     email: "michael.chen@example.com",
-    avatar: "/avatars/michael.jpg",
+
     status: "In Progress",
     appliedDate: "Jan 17, 2024",
     resume: "Resume-Michael-Chen.pdf",
@@ -783,7 +776,6 @@ export const candidates: Candidate[] = [
     jobId: "1", // UI/UX Designer
     name: "Sophia Rodriguez",
     email: "sophia.r@example.com",
-    avatar: "/avatars/sophia.jpg",
     status: "Sourced",
     appliedDate: "Jan 20, 2024",
   },
@@ -792,7 +784,7 @@ export const candidates: Candidate[] = [
     jobId: "2", // Junior Frontend Developer
     name: "David Kim",
     email: "david.kim@example.com",
-    avatar: "/avatars/david.jpg",
+
     status: "In Progress",
     appliedDate: "Jan 18, 2024",
     resume: "Resume-David-Kim.pdf",
@@ -802,7 +794,6 @@ export const candidates: Candidate[] = [
     jobId: "2", // Junior Frontend Developer
     name: "Emma Wilson",
     email: "emma.w@example.com",
-    avatar: "/avatars/emma.jpg",
     status: "Hired",
     appliedDate: "Jan 10, 2024",
     resume: "Resume-Emma-Wilson.pdf",
@@ -813,7 +804,6 @@ export const candidates: Candidate[] = [
     jobId: "3", // Motion Graphic Designer
     name: "Olivia Martinez",
     email: "olivia.m@example.com",
-    avatar: "/avatars/olivia.jpg",
     status: "Sourced",
     appliedDate: "Jan 21, 2024",
   },
@@ -822,7 +812,6 @@ export const candidates: Candidate[] = [
     jobId: "4", // SEO Specialist
     name: "William Garcia",
     email: "will.garcia@example.com",
-    avatar: "/avatars/william.jpg",
     status: "Interview",
     appliedDate: "Jan 19, 2024",
     resume: "Resume-William-Garcia.pdf",
@@ -832,7 +821,6 @@ export const candidates: Candidate[] = [
     jobId: "5", // Project Assistant Manager
     name: "Ava Brown",
     email: "ava.b@example.com",
-    avatar: "/avatars/ava.jpg",
     status: "In Progress",
     appliedDate: "Jan 22, 2024",
     resume: "Resume-Ava-Brown.pdf",
@@ -843,7 +831,6 @@ export const candidates: Candidate[] = [
     jobId: "6", // Intern Graphic Design
     name: "Noah Davis",
     email: "noah.davis@example.com",
-    avatar: "/avatars/noah.jpg",
     status: "Hired",
     appliedDate: "Jan 12, 2024",
   },
@@ -852,7 +839,6 @@ export const candidates: Candidate[] = [
     jobId: "7", // 3D Animation
     name: "Isabella Miller",
     email: "isabella.m@example.com",
-    avatar: "/avatars/isabella.jpg",
     status: "Sourced",
     appliedDate: "Jan 23, 2024",
   },
@@ -861,7 +847,6 @@ export const candidates: Candidate[] = [
     jobId: "8", // Senior Web Developer
     name: "James Rodriguez",
     email: "james.r@example.com",
-    avatar: "/avatars/james_r.jpg",
     status: "Interview",
     appliedDate: "Jan 16, 2024",
     resume: "Resume-James-Rodriguez.pdf",
@@ -871,7 +856,6 @@ export const candidates: Candidate[] = [
     jobId: "9", // Marketing Specialist
     name: "Charlotte Wilson",
     email: "charlotte.w@example.com",
-    avatar: "/avatars/charlotte.jpg",
     status: "Rejected",
     appliedDate: "Dec 10, 2023",
     resume: "Resume-Charlotte-Wilson.pdf",
@@ -881,7 +865,6 @@ export const candidates: Candidate[] = [
     jobId: "10", // Backend Developer
     name: "Liam Anderson",
     email: "liam.a@example.com",
-    avatar: "/avatars/liam.jpg",
     status: "Hired",
     appliedDate: "Dec 18, 2023",
     resume: "Resume-Liam-Anderson.pdf",
@@ -891,7 +874,6 @@ export const candidates: Candidate[] = [
     jobId: "11", // Product Manager
     name: "Mia Thomas",
     email: "mia.thomas@example.com",
-    avatar: "/avatars/mia.jpg",
     status: "In Progress",
     appliedDate: "Dec 28, 2023",
     resume: "Resume-Mia-Thomas.pdf",
@@ -902,7 +884,6 @@ export const candidates: Candidate[] = [
     jobId: "12", // Data Analyst
     name: "Benjamin Jackson",
     email: "ben.jackson@example.com",
-    avatar: "/avatars/benjamin.jpg",
     status: "Sourced",
     appliedDate: "Jan 02, 2024",
   },

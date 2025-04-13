@@ -12,18 +12,27 @@ import {
 } from "@mui/material";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { useRouter } from "next/navigation";
 
 export default function EmployeeDetails() {
   const theme = useTheme();
+  const router = useRouter();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <>
       <Card
+        onClick={() => router.push("/employee")}
         sx={{
           mb: 2,
           borderRadius: "8px",
           boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+          cursor: "pointer",
+          transition: "transform 0.2s, box-shadow 0.2s",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+          },
         }}
       >
         <CardContent sx={{ p: { xs: 2, sm: 3 }, pb: { xs: 1.5, sm: 2 } }}>
@@ -113,15 +122,22 @@ export default function EmployeeDetails() {
       </Card>
 
       <Card
+        onClick={() => router.push("/employee")}
         sx={{
           borderRadius: "8px",
           boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+          cursor: "pointer",
+          transition: "transform 0.2s, box-shadow 0.2s",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+          },
         }}
       >
         <CardContent sx={{ p: { xs: 1.5, sm: 2 } }}>
           <Box sx={{ display: "flex", alignItems: "center", mb: 1.5 }}>
             <Avatar
-              src="/avatars/cody.jpg"
+              src=""
               alt="Cody Fisher"
               sx={{ width: 40, height: 40, mr: 2 }}
             />

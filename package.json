@@ -12,11 +12,16 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@fontsource/roboto": "^5.2.5",
+    "@hello-pangea/dnd": "^18.0.1",
     "@mui/icons-material": "^6.4.11",
     "@mui/material": "^6.4.11",
+    "@types/react-beautiful-dnd": "^13.1.8",
+    "@xyflow/react": "^12.5.5",
     "next": "15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-beautiful-dnd": "^13.1.1",
+    "react-dom": "^19.0.0",
+    "reactflow": "^11.11.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
