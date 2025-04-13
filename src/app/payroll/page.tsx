@@ -28,7 +28,7 @@ export default function PayrollPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterType, setFilterType] = useState<FilterType>("all");
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const rowsPerPage = 10;
   const [filteredRecords, setFilteredRecords] = useState<PayrollRecord[]>([]);
 
   // Add initial load of records
@@ -81,13 +81,6 @@ export default function PayrollPage() {
 
   const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
   };
 
   // Helper function to format currency

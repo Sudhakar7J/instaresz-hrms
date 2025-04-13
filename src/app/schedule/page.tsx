@@ -141,7 +141,7 @@ export default function SchedulePage() {
       // Check if this event conflicts with any event in existing tracks
       let placed = false;
 
-      for (let track of tracks) {
+      for (const track of tracks) {
         // Check if this track is free for this event
         const hasOverlap = track.some((existingEvent) => {
           return eventsOverlap(existingEvent, event);
@@ -261,25 +261,6 @@ export default function SchedulePage() {
         </Box>
       );
     });
-  };
-
-  // Calculate the current time position for the indicator
-  const getCurrentTimePosition = () => {
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    // Only show time indicator between 7am and 3pm
-    if (hours < 7 || hours >= 15) {
-      return null;
-    }
-
-    const totalMinutes = hours * 60 + minutes;
-    const baseTime = 7 * 60; // 7:00 in minutes
-    const totalTimeRange = 8 * 60; // 8 hours in minutes (7:00 to 15:00)
-
-    const position = ((totalMinutes - baseTime) / totalTimeRange) * 100;
-    return `${position}%`;
   };
 
   // Current time for demo purposes
